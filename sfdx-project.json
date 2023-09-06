@@ -14,7 +14,7 @@
     }
   ],
   "name": "cohortFall22",
-  "namespace": "CFTest",
+  "namespace": "cftestcopado",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "57.0"
 }
