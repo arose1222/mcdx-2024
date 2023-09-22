@@ -9,6 +9,7 @@
 deploy-options.json
 .husky
 .vscode
+.copado/
 
 # LWC VSCode autocomplete
 **/lwc/jsconfig.json
