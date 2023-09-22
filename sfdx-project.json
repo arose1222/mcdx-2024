@@ -1,20 +1,30 @@
 {
-  "packageDirectories": [
-    {
-      "path": "srcMyCoreApp",
-      "default": true
-    },
-    {
-      "path": "srcMySalesApp",
-      "default": false
-    },
-    {
-      "path": "srcMyServiceApp",
-      "default": false
+    "packageDirectories": [
+        {
+            "path": "srcMyCoreApp",
+            "default": true
+        },
+        {
+            "path": "srcMySalesApp",
+            "default": false
+        },
+        {
+            "path": "srcMyServiceApp",
+            "default": false
+        },
+        {
+            "path": "./srcMYCoreApp",
+            "package": "Package Test",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
+        }
+    ],
+    "name": "cohortFall22",
+    "namespace": "cftestcopado",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "57.0",
+    "packageAliases": {
+        "Package Test": "0HoHs000000005aKAA"
     }
-  ],
-  "name": "cohortFall22",
-  "namespace": "",
-  "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "57.0"
 }
