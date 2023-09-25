@@ -13,7 +13,7 @@
             "default": false
         },
         {
-            "path": "srcMYCoreApp",
+            "path": "srcMyCoreApp",
             "package": "Package Test",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
