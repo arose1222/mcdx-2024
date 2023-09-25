@@ -2,18 +2,18 @@
   "packageDirectories": [
     {
       "path": "srcMyCoreApp",
-      "default": true
+      "default": false
     },
     {
       "path": "srcMySalesApp",
-      "default": false
+      "default": true
     },
     {
       "path": "srcMyServiceApp",
       "default": false
     },
     {
-      "path": "srcMyCoreApp",
+      "path": "srcMySalesApp",
       "package": "Package Test",
       "versionName": "ver 0.1",
       "versionNumber": "0.1.0.NEXT",
