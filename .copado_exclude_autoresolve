@@ -10,4 +10,4 @@
 #**/layouts/*.layout-meta.xml
 **/profiles/**
 **/objects/**
-**/RecordType/**
+**/recordType/**
