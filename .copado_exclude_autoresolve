@@ -8,5 +8,5 @@
 **/classes/*.cls
 **/pages/*.page
 **/*.layout-meta.xml
-**/profile/*.profile-meta.xml
+**/*.profile-meta.xml
 **/objects/*.xml
