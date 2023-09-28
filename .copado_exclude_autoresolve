@@ -8,6 +8,6 @@
 **/classes/*.cls
 **/pages/*.page
 **/*.layout-meta.xml
-**/*.profile-meta.xml
-**/*.objects-meta.xml
+**/profiles/**
+**/objects/**
 
