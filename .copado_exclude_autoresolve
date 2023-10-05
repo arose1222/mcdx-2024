@@ -9,4 +9,5 @@
 **/pages/*.page
 **/*.layout-meta.xml
 **/*.profile-meta.xml
+srcMyCoreApp/main/default/profiles/Admin.profile-meta.xml
 **/objects/*.xml
