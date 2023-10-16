@@ -19049,9 +19049,6 @@
         <layout>CardPaymentMethod-Card Payment Method Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Case-Case Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>CaseClose-Close Case Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
