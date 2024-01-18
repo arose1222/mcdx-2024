@@ -44,5 +44,6 @@ private class AccountAutomationsTest {
         acc = AccountAutomations.setDefaultURL(acc);
         System.assertEquals('www.copa.do', acc.Website, 'Default website is www.copa.do');
     }
+    //for fun
 
 }
