@@ -25,5 +25,6 @@ public class AccountAutomations {
     public static Account setDefaultURL(Account a) {
         a.website = 'www.copa.do'; 
         return a;
-        //CLI commit for fun
+    }
+    //CLI Commit
 }
