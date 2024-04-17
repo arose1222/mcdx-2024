@@ -43,7 +43,7 @@ private class AccountAutomationsTest {
         insert acc;
         acc = AccountAutomations.setDefaultURL(acc);
         System.assertEquals('www.copa.do', acc.Website, 'Default website is www.copa.do');
-        //Live CLI Commit
+        //Live Test
     }
 
 }
