@@ -2,11 +2,11 @@
   "packageDirectories": [
     {
       "path": "srcMyCoreApp",
-      "default": false
+      "default": true
     },
     {
       "path": "srcMySalesApp",
-      "default": true
+      "default": false
     },
     {
       "path": "srcMyServiceApp",
