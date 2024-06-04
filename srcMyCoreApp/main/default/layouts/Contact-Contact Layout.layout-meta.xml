@@ -29,6 +29,10 @@
                 <behavior>Edit</behavior>
                 <field>Test_Upgrade__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Parent_Contact__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
