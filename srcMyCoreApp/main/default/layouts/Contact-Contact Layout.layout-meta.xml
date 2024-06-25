@@ -53,6 +53,10 @@
                 <behavior>Edit</behavior>
                 <field>Surname__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Situation__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
