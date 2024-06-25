@@ -49,6 +49,10 @@
                 <behavior>Edit</behavior>
                 <field>Assignment__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Surname__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
