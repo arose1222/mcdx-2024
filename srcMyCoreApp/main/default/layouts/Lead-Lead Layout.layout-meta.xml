@@ -29,7 +29,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Destination__c</field>
+                <field>Content__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
