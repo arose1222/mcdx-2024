@@ -48,6 +48,10 @@
                 <behavior>Edit</behavior>
                 <field>Suggestion__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Output__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
