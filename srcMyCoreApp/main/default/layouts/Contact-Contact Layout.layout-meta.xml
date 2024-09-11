@@ -65,6 +65,10 @@
                 <behavior>Edit</behavior>
                 <field>Left_Behind__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Designer__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
