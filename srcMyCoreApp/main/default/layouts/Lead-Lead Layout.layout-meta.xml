@@ -46,7 +46,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Conversion_Rate__c</field>
+                <field>Locked__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
