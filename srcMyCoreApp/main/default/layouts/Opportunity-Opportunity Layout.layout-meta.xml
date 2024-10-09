@@ -60,6 +60,10 @@
                 <behavior>Edit</behavior>
                 <field>Partial_Update__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Final__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
