@@ -10448,6 +10448,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Lead.Constituite__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Lead.Conversion_Rate__c</field>
         <readable>true</readable>
     </fieldPermissions>
