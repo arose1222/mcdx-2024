@@ -72,6 +72,10 @@
                 <behavior>Edit</behavior>
                 <field>Solution__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Definition__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
