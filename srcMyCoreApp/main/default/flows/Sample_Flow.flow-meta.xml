@@ -28,10 +28,26 @@
         <label>Sampel Update</label>
         <locationX>176</locationX>
         <locationY>323</locationY>
+        <connector>
+            <targetReference>Update_3_0</targetReference>
+        </connector>
         <inputAssignments>
             <field>AccountId</field>
             <value>
                 <stringValue></stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_3_0</name>
+        <label>Update 3.0</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <booleanValue>false</booleanValue>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
