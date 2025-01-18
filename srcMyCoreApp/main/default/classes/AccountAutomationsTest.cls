@@ -21,6 +21,8 @@ private class AccountAutomationsTest {
         System.assertEquals('Madrid', acc.BillingState, 'Default BillingState is Madrid');
         System.assertEquals('28023', acc.BillingPostalCode, 'Default BillingPostalCode is 28023');
     }
+    //In Progress Changes
+    //Production Deployment Updates
 
     @isTest static void testDefaultShippingAddress(){
         Account acc = new Account(Name = 'My Test Account');
@@ -35,7 +37,7 @@ private class AccountAutomationsTest {
         Account acc = new Account(Name = 'My Test Account');
         insert acc;
         acc = AccountAutomations.setDefaultPhone(acc);
-        System.assertEquals('3176547867', acc.Phone, 'Default phone number is 3176547867');
+        System.assertEquals('9999999', acc.Phone, 'Default phone number is 9999999');
     }
 
     @isTest static void testDefaultURL(){
