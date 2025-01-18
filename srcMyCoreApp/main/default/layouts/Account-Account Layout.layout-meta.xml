@@ -28,11 +28,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Package_Creation__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Merge_Conflict__c</field>
+                <field>Priority_Description__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
