@@ -10,6 +10,8 @@ public class AccountAutomations {
         a.Site = 'Single location'; 
         return a;
     }
+    //In Progress Changes
+    //Production Deployment Updates
     public static Account setDefaultShippingAddress(Account a){
         a.shippingstreet = '111 W Illinois St'; 
         a.shippingstate = 'Chicago';
@@ -17,7 +19,7 @@ public class AccountAutomations {
         return a;
     }
     public static Account setDefaultPhone(Account a) {
-        a.Phone='3174854353';
+        a.Phone='1111111111';
         return a;
     }
     public static Account setDefaultURL(Account a) {
