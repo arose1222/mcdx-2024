@@ -12,6 +12,8 @@ public class AccountAutomations {
         a.billingpostalcode ='28023'; 
         return a;
     }
+    //In Progress Changes
+    //Production Deployment Updates
     public static Account setDefaultShippingAddress(Account a){
         a.shippingstreet = 'Basauri, 6'; 
         a.shippingstate = 'Madrid';
@@ -19,7 +21,7 @@ public class AccountAutomations {
         return a;
     }
     public static Account setDefaultPhone(Account a) {
-        a.Phone='3176547867';
+        a.Phone='9999999';
         return a;
     }
     public static Account setDefaultURL(Account a) {
