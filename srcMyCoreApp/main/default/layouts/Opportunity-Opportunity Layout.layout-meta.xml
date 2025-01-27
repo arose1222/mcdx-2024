@@ -96,6 +96,10 @@
                 <behavior>Edit</behavior>
                 <field>Economic_Buyer__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CCH__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
