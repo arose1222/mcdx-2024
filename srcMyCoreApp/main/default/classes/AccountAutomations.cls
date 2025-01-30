@@ -15,11 +15,11 @@ public class AccountAutomations {
     public static Account setDefaultShippingAddress(Account a){
         a.shippingstreet = '111 W Illinois St'; 
         a.shippingstate = 'Chicago';
-        a.shippingpostalcode ='60654';
+        a.shippingpostalcode ='46033';
         return a;
     }
     public static Account setDefaultPhone(Account a) {
-        a.Phone='9999999';
+        a.Phone='3676546756';
         return a;
     }
     public static Account setDefaultURL(Account a) {
