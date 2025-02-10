@@ -9286,6 +9286,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.Last_Auto_Escalation_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.Location__c</field>
         <readable>true</readable>
     </fieldPermissions>
