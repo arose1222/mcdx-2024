@@ -6,10 +6,8 @@ public class AccountAutomations {
             return a;
         }
     }
-    public static Account setDefaultBillingAddress(Account a){
-        a.billingstreet = 'Basauri, 6'; 
-        a.billingstate = 'Madrid'; 
-        a.billingpostalcode ='28023'; 
+    public static Account setDefaultSite(Account a){
+        a.Site = 'Single location'; 
         return a;
     }
     //In Progress Changes
@@ -21,11 +19,11 @@ public class AccountAutomations {
         return a;
     }
     public static Account setDefaultPhone(Account a) {
-        a.Phone='3676546756';
+        a.Phone='3176546789';
         return a;
     }
     public static Account setDefaultURL(Account a) {
-        a.website = 'www.copa.do'; 
+        a.website = 'www.copado.com'; 
         return a;
     }
 }
