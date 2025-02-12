@@ -15,13 +15,13 @@ public class AccountAutomations {
     //In Progress Changes
     //Production Deployment Updates
     public static Account setDefaultShippingAddress(Account a){
-        a.shippingstreet = 'Basauri, 6'; 
-        a.shippingstate = 'Madrid';
-        a.shippingpostalcode ='28023';
+        a.shippingstreet = '111 W Illinois St'; 
+        a.shippingstate = 'Chicago';
+        a.shippingpostalcode ='46033';
         return a;
     }
     public static Account setDefaultPhone(Account a) {
-        a.Phone='9999999';
+        a.Phone='318798767675';
         return a;
     }
     public static Account setDefaultURL(Account a) {
