@@ -114,6 +114,10 @@
                 <behavior>Edit</behavior>
                 <field>Manager_Assignment_Date__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Client_Phone__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
