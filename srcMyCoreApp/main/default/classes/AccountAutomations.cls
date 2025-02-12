@@ -19,7 +19,7 @@ public class AccountAutomations {
         return a;
     }
     public static Account setDefaultPhone(Account a) {
-        a.Phone='3176546789';
+        a.Phone='318798767675';
         return a;
     }
     public static Account setDefaultURL(Account a) {
