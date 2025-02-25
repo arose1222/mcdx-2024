@@ -6,6 +6,7 @@ public class AccountAutomations {
             return a;
         }
     }
+    //Test Mule Commit
     public static Account setDefaultSite(Account a){
         a.Site = 'Single location'; 
         return a;
@@ -19,7 +20,7 @@ public class AccountAutomations {
         return a;
     }
     public static Account setDefaultPhone(Account a) {
-        a.Phone='318798767675';
+        a.Phone='3176546789';
         return a;
     }
     public static Account setDefaultURL(Account a) {
