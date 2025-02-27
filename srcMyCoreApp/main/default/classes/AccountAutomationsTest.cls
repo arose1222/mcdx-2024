@@ -21,7 +21,7 @@ private class AccountAutomationsTest {
         System.assertEquals('Madrid', acc.BillingState, 'Default BillingState is Madrid');
         System.assertEquals('28023', acc.BillingPostalCode, 'Default BillingPostalCode is 28023');
     }
-    //In Progress Changes
+   //Update Changes
     //Production Deployment Updates
 
     @isTest static void testDefaultShippingAddress(){

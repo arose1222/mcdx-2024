@@ -12,7 +12,7 @@ public class AccountAutomations {
         a.billingpostalcode ='28023'; 
         return a;
     }
-    //In Progress Changes
+    //Update Changes
     //Production Deployment Updates
     public static Account setDefaultShippingAddress(Account a){
         a.shippingstreet = 'Basauri, 6'; 
