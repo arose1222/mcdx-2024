@@ -19,7 +19,7 @@ private class AccountAutomationsTest {
         acc = AccountAutomations.setDefaultSite(acc);
         System.assertEquals('Single location', acc.Site, 'Default Site is Single location');
     }
-    //In Progress Changes
+   //Update Changes
     //Production Deployment Updates
 
     @isTest static void testDefaultShippingAddress(){
