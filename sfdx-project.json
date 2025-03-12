@@ -23,7 +23,7 @@
   "name": "cohortFall22",
   "namespace": "cftestcopado",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "62.0",
+  "sourceApiVersion": "63.0",
   "packageAliases": {
     "Package Test": "0HoHs000000005aKAA",
     "Package Test@0.1.0-1-feature/US-0000005": "04tHs000000FRNIIA4"
