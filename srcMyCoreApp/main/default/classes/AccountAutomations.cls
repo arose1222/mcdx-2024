@@ -6,6 +6,7 @@ public class AccountAutomations {
             return a;
         }
     }
+    //Test Mule Commit 2.0
     public static Account setDefaultSite(Account a){
         a.Site = 'Single location'; 
         return a;
