@@ -6,17 +6,15 @@ public class AccountAutomations {
             return a;
         }
     }
-    //Test Mule Commit 2.0
     public static Account setDefaultSite(Account a){
         a.Site = 'Single location'; 
         return a;
+        //Merge Conflict Scenario
     }
-    //Update Changes
-    //Production Deployment Updates
     public static Account setDefaultShippingAddress(Account a){
         a.shippingstreet = '111 W Illinois St'; 
         a.shippingstate = 'Chicago';
-        a.shippingpostalcode ='46033';
+        a.shippingpostalcode ='46040';
         return a;
     }
     public static Account setDefaultPhone(Account a) {
