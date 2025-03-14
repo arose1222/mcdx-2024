@@ -9,6 +9,7 @@ public class AccountAutomations {
     public static Account setDefaultSite(Account a){
         a.Site = 'Single location'; 
         return a;
+        //Merge Conflict Scenario
     }
     public static Account setDefaultShippingAddress(Account a){
         a.shippingstreet = '111 W Illinois St'; 
