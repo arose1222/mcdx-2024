@@ -6,6 +6,7 @@ public class AccountAutomations {
             return a;
         }
     }
+    //Update Changes
     public static Account setDefaultSite(Account a){
         a.Site = 'Single location'; 
         return a;
