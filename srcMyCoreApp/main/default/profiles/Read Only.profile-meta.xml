@@ -8380,7 +8380,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.CRT__c</field>
+        <field>Account.Data__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Deliverables__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
