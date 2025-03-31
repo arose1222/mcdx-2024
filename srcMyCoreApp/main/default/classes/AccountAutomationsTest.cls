@@ -27,14 +27,14 @@ private class AccountAutomationsTest {
         acc = AccountAutomations.setDefaultShippingAddress(acc);
         System.assertEquals('111 W Illinois St', acc.ShippingStreet, 'Default ShippingStreet is 111 W Illinois St');
         System.assertEquals('Chicago', acc.ShippingState, 'Default Shippingtate is Chicago');
-        System.assertEquals('46040', acc.ShippingPostalCode, 'Default ShippingPostalCode is 60654');
+        System.assertEquals('46040', acc.ShippingPostalCode, 'Default ShippingPostalCode is 46040');
     }
 
     @isTest static void testDefaultPhone(){
         Account acc = new Account(Name = 'My Test Account');
         insert acc;
         acc = AccountAutomations.setDefaultPhone(acc);
-        System.assertEquals('318798767675', acc.Phone, 'Default phone number is 318798767675');
+        System.assertEquals('3174162141', acc.Phone, 'Default phone number is 3174162141');
     }
 
     @isTest static void testDefaultURL(){
