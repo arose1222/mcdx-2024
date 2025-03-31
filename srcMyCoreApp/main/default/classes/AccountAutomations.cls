@@ -6,13 +6,10 @@ public class AccountAutomations {
             return a;
         }
     }
-    //Update Changes
     public static Account setDefaultSite(Account a){
         a.Site = 'Single location'; 
         return a;
     }
-    //Update Changes
-    //Production Deployment Updates
     public static Account setDefaultShippingAddress(Account a){
         a.shippingstreet = '111 W Illinois St'; 
         a.shippingstate = 'Chicago';
@@ -20,7 +17,7 @@ public class AccountAutomations {
         return a;
     }
     public static Account setDefaultPhone(Account a) {
-        a.Phone='3176546789';
+        a.Phone='3174162141';
         return a;
     }
     public static Account setDefaultURL(Account a) {
