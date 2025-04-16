@@ -31,6 +31,10 @@
                 <behavior>Edit</behavior>
                 <field>AppOmni__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Campaign_Location__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
