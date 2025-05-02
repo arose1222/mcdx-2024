@@ -40,6 +40,10 @@
                 <behavior>Edit</behavior>
                 <field>Savings__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Discrepancies__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
