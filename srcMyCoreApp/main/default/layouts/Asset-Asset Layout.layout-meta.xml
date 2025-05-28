@@ -43,6 +43,18 @@
                 <behavior>Edit</behavior>
                 <field>Location__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Sequence__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Location_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Lamination__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
