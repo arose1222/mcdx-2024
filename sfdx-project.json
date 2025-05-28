@@ -1,8 +1,12 @@
 {
   "packageDirectories": [
     {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
       "path": "srcMyCoreApp",
-      "default": true
+      "default": true,
+      "package": "MCDX Base Package",
+      "versionDescription": ""
     },
     {
       "path": "srcMySalesApp",
@@ -25,6 +29,7 @@
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "63.0",
   "packageAliases": {
-    "Package Test": "0HoHs000000005aKAA"
+    "Package Test": "0HoHs000000005aKAA",
+    "MCDX Base Package": "0HoHs000000oQOeKAM"
   }
 }
