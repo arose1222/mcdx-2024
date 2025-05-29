@@ -1,12 +1,8 @@
 {
   "packageDirectories": [
     {
-      "versionName": "ver 0.1",
-      "versionNumber": "0.1.0.NEXT",
       "path": "srcMyCoreApp",
-      "default": true,
-      "package": "MCDX Base Package",
-      "versionDescription": ""
+      "default": true
     },
     {
       "path": "srcMySalesApp",
@@ -25,11 +21,10 @@
     }
   ],
   "name": "cohortFall22",
-  "namespace": "cftestcopado",
+  "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "63.0",
   "packageAliases": {
-    "Package Test": "0HoHs000000005aKAA",
-    "MCDX Base Package": "0HoHs000000oQOeKAM"
+    "Package Test": "0HoHs000000005aKAA"
   }
 }
