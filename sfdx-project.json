@@ -30,6 +30,7 @@
   "sourceApiVersion": "63.0",
   "packageAliases": {
     "Package Test": "0HoHs000000005aKAA",
-    "Core Package": "0HoHs000000oQOtKAM"
+    "Core Package": "0HoHs000000oQOtKAM",
+    "Core Package@0.1.0-1": "04tHs000000rRswIAE"
   }
 }

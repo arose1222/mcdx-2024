@@ -1,3 +1,0 @@
-<apex:page id="PipelineDiagram">
-   <!--DEPRECATED with v15 (Winter20) after merging it with PipelineManager-->
-</apex:page>

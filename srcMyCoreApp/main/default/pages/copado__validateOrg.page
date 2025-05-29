@@ -1,2 +1,0 @@
-<apex:page action="{!validateOrg}" standardController="copado__Org__c" extensions="copado.ValidateOrgExtension">
-</apex:page>

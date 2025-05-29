@@ -1,5 +1,0 @@
-<messaging:emailTemplate subject="Build Task has completed" relatedToType="copado__Build_Task__c">
-    <messaging:htmlEmailBody >
-        <c:NewBuildTaskStatusNotificationContainer buildTaskRecordId="{!relatedTo.Id}" continuousIntegrationRecordId="{!relatedTo.copado__Continuous_Integration__c}"/>
-    </messaging:htmlEmailBody>
-</messaging:emailTemplate>

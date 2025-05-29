@@ -1,5 +1,0 @@
-<messaging:emailTemplate subject="Notification" recipientType="User" >
-    <messaging:htmlEmailBody >
-        <c:GenericEmailContainer />
-    </messaging:htmlEmailBody>
-</messaging:emailTemplate>

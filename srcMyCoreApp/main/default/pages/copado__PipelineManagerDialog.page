@@ -1,3 +1,0 @@
-<apex:page standardController="copado__Deployment_Flow__c" extensions="copado.PipelineManagerExtension">
-    
-</apex:page>
