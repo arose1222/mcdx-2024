@@ -22,6 +22,14 @@
       "versionName": "ver 0.1",
       "versionNumber": "0.1.0.NEXT",
       "default": false
+    },
+    {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "path": "force-app",
+      "default": false,
+      "package": "Test Package (Creation Issue",
+      "versionDescription": ""
     }
   ],
   "name": "cohortFall22",
@@ -30,6 +38,7 @@
   "sourceApiVersion": "63.0",
   "packageAliases": {
     "Package Test": "0HoHs000000005aKAA",
-    "MCDX Base Package": "0HoHs000000oQOeKAM"
+    "MCDX Base Package": "0HoHs000000oQOeKAM",
+    "Test Package (Creation Issue": "0HoHs000000oQOjKAM"
   }
 }
