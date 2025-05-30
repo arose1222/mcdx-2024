@@ -6,7 +6,7 @@
       "path": "srcMyCoreApp",
       "default": true,
       "package": "Core Package",
-      "versionDescription": ""
+      "versionDescription": "",
       "dependencies": [
         {
         "package": "FirstPackage@0.1.0-1-main"
