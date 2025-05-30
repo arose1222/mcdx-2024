@@ -6,12 +6,7 @@
       "path": "srcMyCoreApp",
       "default": true,
       "package": "Core Package",
-      "versionDescription": "",
-      "dependencies": [
-        {
-        "package": "FirstPackage@0.1.0-1-main"
-        }
-      ]
+      "versionDescription": ""
     },
     {
       "path": "srcMySalesApp",
