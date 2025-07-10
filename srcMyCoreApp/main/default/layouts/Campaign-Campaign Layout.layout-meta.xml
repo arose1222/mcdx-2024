@@ -52,6 +52,10 @@
                 <behavior>Edit</behavior>
                 <field>Merchant__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Dependency_Check__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
