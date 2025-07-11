@@ -56,6 +56,10 @@
                 <behavior>Edit</behavior>
                 <field>Dependency_Check__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Campaign_Evidence__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
