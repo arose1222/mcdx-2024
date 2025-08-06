@@ -64,6 +64,10 @@
                 <behavior>Edit</behavior>
                 <field>Natural__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Quickstart__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -200,6 +204,8 @@
                 <customLink>ViewCampaignInfluenceReport</customLink>
             </layoutItems>
         </layoutColumns>
+        <layoutColumns/>
+        <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
     <layoutSections>
@@ -208,6 +214,7 @@
         <editHeading>true</editHeading>
         <label>Additional Information</label>
         <layoutColumns/>
+        <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -215,6 +222,7 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Other Information</label>
+        <layoutColumns/>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
