@@ -6,18 +6,21 @@ public class AccountAutomations {
             return a;
         }
     }
+    //Test Mule Commit 2.0
     public static Account setDefaultSite(Account a){
         a.Site = 'Single location'; 
         return a;
     }
+    //Update Changes
+    //Production Deployment Updates 2.0
     public static Account setDefaultShippingAddress(Account a){
         a.shippingstreet = '111 W Illinois St'; 
         a.shippingstate = 'Chicago';
-        a.shippingpostalcode ='46040';
+        a.shippingpostalcode ='46033';
         return a;
     }
     public static Account setDefaultPhone(Account a) {
-        a.Phone='3174162141';
+        a.Phone='318798767675';
         return a;
     }
     public static Account setDefaultURL(Account a) {
