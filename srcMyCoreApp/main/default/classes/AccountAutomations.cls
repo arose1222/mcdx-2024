@@ -11,8 +11,7 @@ public class AccountAutomations {
         a.Site = 'Single location'; 
         return a;
     }
-    //Update Changes
-    //Production Deployment Updates 2.0
+    //PAT Changes
     public static Account setDefaultShippingAddress(Account a){
         a.shippingstreet = '111 W Illinois St'; 
         a.shippingstate = 'Chicago';
