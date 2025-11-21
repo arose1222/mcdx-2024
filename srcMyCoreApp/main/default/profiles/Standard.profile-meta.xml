@@ -10066,6 +10066,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Contract.Stephen_Creating_Extra_Work__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ContractLineItem.AssetId</field>
         <readable>true</readable>
     </fieldPermissions>

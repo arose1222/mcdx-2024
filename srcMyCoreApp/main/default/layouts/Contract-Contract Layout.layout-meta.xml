@@ -47,6 +47,10 @@
                 <behavior>Edit</behavior>
                 <field>Pen__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Stephen_Creating_Extra_Work__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
