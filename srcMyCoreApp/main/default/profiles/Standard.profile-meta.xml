@@ -16306,6 +16306,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>copado__Persona_Definition__c.copado__Is_Standard__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>copado__Persona_Permission__c.copado__Permission_Set_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
