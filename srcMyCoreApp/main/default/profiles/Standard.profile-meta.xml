@@ -8491,6 +8491,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Address.Location_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>AdvAccountForecastFact.ForecastedQuantity</field>
         <readable>true</readable>
     </fieldPermissions>
