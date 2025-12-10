@@ -6,7 +6,7 @@ public class AccountAutomations {
             return a;
         }
     }
-    //Update Changes
+    //Test AI Quality Gate
     public static Account setDefaultSite(Account a){
         a.Site = 'Single location'; 
         return a;
