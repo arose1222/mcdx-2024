@@ -6,13 +6,10 @@ public class AccountAutomations {
             return a;
         }
     }
-    //Update Changes
     public static Account setDefaultSite(Account a){
         a.Site = 'Single location'; 
         return a;
     }
-    //Dolby Changes 2.0
-    //UPdate
     public static Account setDefaultShippingAddress(Account a){
         a.shippingstreet = '111 W Illinois St'; 
         a.shippingstate = 'Chicago';
