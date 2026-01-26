@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>55.0</apiVersion>
+    <apiVersion>62.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Standard_Updates</name>
+        <label>Standard Updates</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>OpportunityNameLogic</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Opportunity_Record_Type</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Is_Opportunity_Renewal</name>
-        <label>Is Opportunity Renewal</label>
-        <locationX>182</locationX>
-        <locationY>611</locationY>
+        <label>Is Opportunity Renewal?</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
         <defaultConnector>
-            <targetReference>Update_Opportunity_0_0</targetReference>
+            <targetReference>Update_Opportunity</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Opportunity_is_Renewal</name>
+            <name>Renewal</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
@@ -22,16 +38,16 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Opportunity_0</targetReference>
+                <targetReference>Update_Opportunity_Renewal</targetReference>
             </connector>
-            <label>Opportunity is Renewal</label>
+            <label>Renewal</label>
         </rules>
     </decisions>
     <decisions>
         <name>Opportunity_Record_Type</name>
         <label>Opportunity Record Type</label>
-        <locationX>380</locationX>
-        <locationY>395</locationY>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Non_Essentials</name>
@@ -49,33 +65,30 @@
             <label>Non-Essentials</label>
         </rules>
     </decisions>
-    <description>v8: Fixed character limit issue - Account Name truncated to 60 chars, added outer LEFT() to guarantee 120 char limit
-v7: SS (NSG) - Updated logic to account for character limit on Opp Name
-v6: SS (NSG) - Tweak to Opp Name logic
-v5: SS (NSG) - Added &quot;Standard Updates&quot; node</description>
+    <description>Automation to update Opportunity Name and Pricebook based on record type and renewal status</description>
     <environments>Default</environments>
     <formulas>
         <name>OpportunityNameLogic</name>
         <dataType>String</dataType>
         <expression>IF(
   NOT(ISBLANK({!$Record.SBQQ__AmendedContract__c})), 
-  LEFT(
-    LEFT({!$Record.Account.Name}, 60) + &apos; - Amendment to Contract #&apos; + 
-    {!$Record.SBQQ__AmendedContract__r.ContractNumber} + &apos; - &apos; + 
-    TEXT(YEAR(TODAY())), 
-    120
-  ),
-  
-  IF(
-    NOT(ISBLANK({!$Record.SBQQ__RenewedContract__c})), 
-    LEFT(
-      LEFT({!$Record.Account.Name}, 60) + &apos; - Renewal #&apos; + 
-      {!$Record.SBQQ__RenewedContract__r.ContractNumber} + &apos; - &apos; + 
-      TEXT(YEAR({!$Record.SBQQ__RenewedContract__r.EndDate})), 
-      120
-    ),
-    
-    LEFT({!$Record.Name}, 120)
+  LEFT({!$Record.Account.Name}, 
+       120 - LEN(&apos; - Amendment to Contract #&apos; + 
+                 {!$Record.SBQQ__AmendedContract__r.ContractNumber} + 
+                 &apos; - &apos; + TEXT(YEAR(TODAY())))
+  ) + &apos; - Amendment to Contract #&apos; + 
+  {!$Record.SBQQ__AmendedContract__r.ContractNumber} + &apos; - &apos; + TEXT(YEAR(TODAY())),
+
+  IF(NOT(ISBLANK({!$Record.SBQQ__RenewedContract__c})), 
+  LEFT({!$Record.Account.Name}, 
+       120 - LEN(&apos; - Renewal #&apos; + 
+                 {!$Record.SBQQ__RenewedContract__r.ContractNumber} + 
+                 &apos; - &apos; + TEXT(YEAR({!$Record.SBQQ__RenewedContract__r.EndDate})))
+  ) + &apos; - Renewal #&apos; + 
+  {!$Record.SBQQ__RenewedContract__r.ContractNumber} + &apos; - &apos; + 
+  TEXT(YEAR({!$Record.SBQQ__RenewedContract__r.EndDate})),
+
+  LEFT({!$Record.Name}, 120)
   )
 )</expression>
     </formulas>
@@ -103,8 +116,8 @@ v5: SS (NSG) - Added &quot;Standard Updates&quot; node</description>
     <recordLookups>
         <name>Get_Copado_Pricebook</name>
         <label>Get Copado Pricebook</label>
-        <locationX>182</locationX>
-        <locationY>503</locationY>
+        <locationX>44</locationX>
+        <locationY>350</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Opportunity_Renewal</targetReference>
@@ -114,7 +127,7 @@ v5: SS (NSG) - Added &quot;Standard Updates&quot; node</description>
             <field>Name</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>Copado Pricebook</stringValue>
+                <stringValue>Copado</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -122,26 +135,29 @@ v5: SS (NSG) - Added &quot;Standard Updates&quot; node</description>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
-        <name>Standard_Updates</name>
-        <label>Standard Updates</label>
-        <locationX>380</locationX>
-        <locationY>287</locationY>
-        <connector>
-            <targetReference>Opportunity_Record_Type</targetReference>
-        </connector>
+        <name>Update_Opportunity</name>
+        <label>Update Opportunity</label>
+        <locationX>308</locationX>
+        <locationY>566</locationY>
         <inputAssignments>
-            <field>Name</field>
+            <field>Pricebook2Id</field>
             <value>
-                <elementReference>OpportunityNameLogic</elementReference>
+                <elementReference>Get_Copado_Pricebook.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>SBQQ__QuotePricebookId__c</field>
+            <value>
+                <elementReference>Get_Copado_Pricebook.Id</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <name>Update_Opportunity_0</name>
-        <label>Update Opportunity</label>
-        <locationX>50</locationX>
-        <locationY>719</locationY>
+        <name>Update_Opportunity_Renewal</name>
+        <label>Update Opportunity Renewal</label>
+        <locationX>44</locationX>
+        <locationY>566</locationY>
         <inputAssignments>
             <field>Pricebook2Id</field>
             <value>
@@ -162,27 +178,8 @@ v5: SS (NSG) - Added &quot;Standard Updates&quot; node</description>
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
-    <recordUpdates>
-        <name>Update_Opportunity_0_0</name>
-        <label>Update Opportunity</label>
-        <locationX>314</locationX>
-        <locationY>719</locationY>
-        <inputAssignments>
-            <field>Pricebook2Id</field>
-            <value>
-                <elementReference>Get_Copado_Pricebook.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>SBQQ__QuotePricebookId__c</field>
-            <value>
-                <elementReference>Get_Copado_Pricebook.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
     <start>
-        <locationX>254</locationX>
+        <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Standard_Updates</targetReference>
