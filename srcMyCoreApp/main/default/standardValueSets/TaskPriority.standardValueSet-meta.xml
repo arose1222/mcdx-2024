@@ -19,4 +19,10 @@
         <label>Low</label>
         <highPriority>false</highPriority>
     </standardValue>
+    <standardValue>
+        <fullName>Nuetral</fullName>
+        <default>false</default>
+        <label>Nuetral</label>
+        <highPriority>false</highPriority>
+    </standardValue>
 </StandardValueSet>
