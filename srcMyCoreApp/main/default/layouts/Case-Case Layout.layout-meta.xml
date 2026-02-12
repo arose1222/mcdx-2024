@@ -251,6 +251,8 @@
         <editHeading>false</editHeading>
         <label>Custom Links</label>
         <layoutColumns/>
+        <layoutColumns/>
+        <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
     <quickActionList>
