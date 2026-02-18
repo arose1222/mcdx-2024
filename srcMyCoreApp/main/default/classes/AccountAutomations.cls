@@ -10,7 +10,6 @@ public class AccountAutomations {
         a.Site = 'Single location'; 
         return a;
     }
-    //PAT Changes
     public static Account setDefaultShippingAddress(Account a){
         a.shippingstreet = '111 W Illinois St'; 
         a.shippingstate = 'Chicago';
@@ -24,5 +23,6 @@ public class AccountAutomations {
     public static Account setDefaultURL(Account a) {
         a.website = 'www.copado.com'; 
         return a;
+        //Updated Comments
     }
 }
