@@ -28,7 +28,7 @@ private class AccountAutomationsTest {
         System.assertEquals('Chicago', acc.ShippingState, 'Default Shippingtate is Chicago');
         System.assertEquals('46040', acc.ShippingPostalCode, 'Default ShippingPostalCode is 60654');
     }
-    //Test Mule Commit 2.0
+    //TTest Comments
     @isTest static void testDefaultPhone(){
         Account acc = new Account(Name = 'My Test Account');
         insert acc;
