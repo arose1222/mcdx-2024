@@ -13,7 +13,7 @@ public class AccountAutomations {
     public static Account setDefaultShippingAddress(Account a){
         a.shippingstreet = '111 W Illinois St'; 
         a.shippingstate = 'Chicago';
-        a.shippingpostalcode ='46040';
+        a.shippingpostalcode ='46033';
         return a;
     }
     public static Account setDefaultPhone(Account a) {
@@ -23,6 +23,6 @@ public class AccountAutomations {
     public static Account setDefaultURL(Account a) {
         a.website = 'www.copado.com'; 
         return a;
-        //Updated Comments
+        //USG Updates
     }
 }
