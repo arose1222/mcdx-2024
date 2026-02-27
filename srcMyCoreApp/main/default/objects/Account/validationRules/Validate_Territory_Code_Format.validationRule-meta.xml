@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Territory_Code_Format</fullName>
+    <active>true</active>
+    <description>Ensures Territory Code matches pattern TER-XX-9999 where XX are uppercase letters and 9999 are digits</description>
+    <errorConditionFormula>AND(
+    NOT(ISBLANK(Territory_Code__c)),
+    NOT(
+        REGEX(Territory_Code__c, &quot;TER-[A-Z]{2}-[0-9]{4}&quot;)
+    )
+)</errorConditionFormula>
+    <errorDisplayField>Territory_Code__c</errorDisplayField>
+    <errorMessage>Territory Code must follow the format: TER-XX-9999 (e.g., TER-CA-0001)</errorMessage>
+</ValidationRule>
