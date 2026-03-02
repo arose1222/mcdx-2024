@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Email_to_New_Manager</name>
+        <label>Send Email to New Manager</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Check_Previous_Manager_Exists</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record.Territory_Manager__r.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>New Territory Assignment: {!$Record.Name}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Email_Body_New_Manager</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Email_to_Previous_Manager</name>
+        <label>Send Email to Previous Manager</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record__Prior.Territory_Manager__r.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Territory Reassignment: {!$Record.Name}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Email_Body_Previous_Manager</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+    </actionCalls>
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Check_Manager_Changed</name>
+        <label>Check Manager Changed</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <defaultConnectorLabel>No Change</defaultConnectorLabel>
+        <rules>
+            <name>Manager_Assigned_or_Changed</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Territory_Manager__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.Territory_Manager__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.Territory_Manager__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Email_to_New_Manager</targetReference>
+            </connector>
+            <label>Manager Assigned or Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Previous_Manager_Exists</name>
+        <label>Check Previous Manager Exists</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <defaultConnectorLabel>No Previous Manager</defaultConnectorLabel>
+        <rules>
+            <name>Previous_Manager_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Territory_Manager__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Email_to_Previous_Manager</targetReference>
+            </connector>
+            <label>Previous Manager Exists</label>
+        </rules>
+    </decisions>
+    <description>Sends email notifications when territory managers are assigned or changed on Account records</description>
+    <label>Territory Reassignment Notification</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Manager_Changed</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Territory_Manager__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Account</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Email_Body_New_Manager</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Hello {!$Record.Territory_Manager__r.FirstName},
+
+You have been assigned as the Territory Manager for the following account:
+
+Account Name: {!$Record.Name}
+Territory Code: {!$Record.Territory_Code__c}
+Territory Status: {!$Record.Territory_Status__c}
+Assignment Date: {!$Record.Territory_Assignment_Date__c}
+
+Please review the account details and take any necessary actions.
+
+Best regards,
+Territory Management System</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Email_Body_Previous_Manager</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Hello {!$Record__Prior.Territory_Manager__r.FirstName},
+
+The following account has been reassigned to a new Territory Manager:
+
+Account Name: {!$Record.Name}
+Territory Code: {!$Record.Territory_Code__c}
+New Territory Manager: {!$Record.Territory_Manager__r.Name}
+Reassignment Date: {!$Record.Territory_Assignment_Date__c}
+
+This account is no longer under your territory management.
+
+Best regards,
+Territory Management System</text>
+    </textTemplates>
+</Flow>
