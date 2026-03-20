@@ -2,14 +2,73 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>61.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Set_Analysis_Reviewer</name>
+        <label>Set Analysis Reviewer</label>
+        <locationX>578</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Analysis_Reviewer__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Close_Date_for_Closed_Lost</name>
+        <label>Set Close Date for Closed Lost</label>
+        <locationX>314</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.CloseDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Closed_By__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Lessons_Learned_Task</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Close_Date_for_Closed_Won</name>
+        <label>Set Close Date for Closed Won</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.CloseDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Closed_By__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Follow_Up_Task</targetReference>
+        </connector>
+    </assignments>
     <decisions>
-        <name>Check_Stage_Change</name>
-        <label>Check Stage Change</label>
-        <locationX>182</locationX>
-        <locationY>242</locationY>
-        <defaultConnectorLabel>No Stage Change</defaultConnectorLabel>
+        <name>Check_Stage</name>
+        <label>Check Stage</label>
+        <locationX>380</locationX>
+        <locationY>350</locationY>
+        <defaultConnectorLabel>Other Stage</defaultConnectorLabel>
         <rules>
-            <name>Stage_Changed_to_Closed_Won</name>
+            <name>Closed_Won</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.StageName</leftValueReference>
@@ -21,10 +80,10 @@
             <connector>
                 <targetReference>Set_Close_Date_for_Closed_Won</targetReference>
             </connector>
-            <label>Stage Changed to Closed Won</label>
+            <label>Closed Won</label>
         </rules>
         <rules>
-            <name>Stage_Changed_to_Closed_Lost</name>
+            <name>Closed_Lost</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.StageName</leftValueReference>
@@ -36,15 +95,30 @@
             <connector>
                 <targetReference>Set_Close_Date_for_Closed_Lost</targetReference>
             </connector>
-            <label>Stage Changed to Closed Lost</label>
+            <label>Closed Lost</label>
+        </rules>
+        <rules>
+            <name>Needs_Analysis</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Needs Analysis</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Analysis_Reviewer</targetReference>
+            </connector>
+            <label>Needs Analysis</label>
         </rules>
     </decisions>
-    <description>Automates actions when opportunity stage changes, including setting close dates, creating follow-up tasks, and sending notifications.</description>
+    <description>Automates actions when an Opportunity stage changes, including setting close dates, tracking who closed the opportunity, identifying the analysis reviewer, and creating follow-up tasks.</description>
     <environments>Default</environments>
     <formulas>
-        <name>ThirtyDaysFromNow</name>
+        <name>FollowUpDueDateFormula</name>
         <dataType>Date</dataType>
-        <expression>TODAY() + 30</expression>
+        <expression>{!$Flow.CurrentDate} + 30</expression>
     </formulas>
     <interviewLabel>Opportunity Stage Change Automation {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Opportunity Stage Change Automation</label>
@@ -68,20 +142,20 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordCreates>
-        <name>Create_Follow_Up_Task_for_Account_Owner</name>
-        <label>Create Follow-Up Task for Account Owner</label>
+        <name>Create_Follow_Up_Task</name>
+        <label>Create Follow-Up Task</label>
         <locationX>50</locationX>
-        <locationY>458</locationY>
+        <locationY>566</locationY>
         <inputAssignments>
             <field>ActivityDate</field>
             <value>
-                <elementReference>ThirtyDaysFromNow</elementReference>
+                <elementReference>FollowUpDueDate</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>Description</field>
             <value>
-                <stringValue>Follow up with customer on their recent purchase. Opportunity: {!$Record.Name} was closed won on {!$Flow.CurrentDate}. Ensure customer satisfaction and explore upsell opportunities.</stringValue>
+                <stringValue>Please follow up with the customer to ensure satisfaction and explore potential upsell opportunities.</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -105,22 +179,23 @@
         <inputAssignments>
             <field>Subject</field>
             <value>
-                <stringValue>Follow up on Closed Won Opportunity: {!$Record.Name}</stringValue>
+                <elementReference>FollowUpTaskSubject</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>WhatId</field>
             <value>
-                <elementReference>$Record.Id</elementReference>
+                <elementReference>$Record.AccountId</elementReference>
             </value>
         </inputAssignments>
         <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordCreates>
         <name>Create_Lessons_Learned_Task</name>
         <label>Create Lessons Learned Task</label>
         <locationX>314</locationX>
-        <locationY>458</locationY>
+        <locationY>566</locationY>
         <inputAssignments>
             <field>ActivityDate</field>
             <value>
@@ -130,7 +205,7 @@
         <inputAssignments>
             <field>Description</field>
             <value>
-                <stringValue>Review why this opportunity was lost and document lessons learned. Update Qualification Notes field with key insights for future opportunities.</stringValue>
+                <stringValue>Please review why this opportunity was lost and document lessons learned for future opportunities.</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -154,7 +229,7 @@
         <inputAssignments>
             <field>Subject</field>
             <value>
-                <stringValue>Review Lessons Learned: {!$Record.Name}</stringValue>
+                <elementReference>LessonsLearnedTaskSubject</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -164,44 +239,13 @@
             </value>
         </inputAssignments>
         <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
-    <recordUpdates>
-        <name>Set_Close_Date_for_Closed_Lost</name>
-        <label>Set Close Date for Closed Lost</label>
-        <locationX>314</locationX>
-        <locationY>350</locationY>
-        <connector>
-            <targetReference>Create_Lessons_Learned_Task</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>CloseDate</field>
-            <value>
-                <elementReference>$Flow.CurrentDate</elementReference>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Set_Close_Date_for_Closed_Won</name>
-        <label>Set Close Date for Closed Won</label>
-        <locationX>50</locationX>
-        <locationY>350</locationY>
-        <connector>
-            <targetReference>Create_Follow_Up_Task_for_Account_Owner</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>CloseDate</field>
-            <value>
-                <elementReference>$Flow.CurrentDate</elementReference>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
     <start>
-        <locationX>56</locationX>
+        <locationX>254</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Check_Stage_Change</targetReference>
+            <targetReference>Check_Stage</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -216,4 +260,24 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <textTemplates>
+        <name>FollowUpTaskSubject</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>Follow up on Closed Won Opportunity: {!$Record.Name}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>LessonsLearnedTaskSubject</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>Review Lessons Learned: {!$Record.Name}</text>
+    </textTemplates>
+    <variables>
+        <name>FollowUpDueDate</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>FollowUpDueDateFormula</elementReference>
+        </value>
+    </variables>
 </Flow>

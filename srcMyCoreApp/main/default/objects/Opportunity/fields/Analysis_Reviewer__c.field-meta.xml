@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Analysis_Reviewer__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Analysis Reviewer</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Reviewed_Opportunities</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
