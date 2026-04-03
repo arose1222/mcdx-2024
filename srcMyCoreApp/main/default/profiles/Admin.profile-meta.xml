@@ -2,11 +2,11 @@
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata"
       xmlns:n1="http://www.w3.org/2001/XMLSchema-instance">
     <fullName>Admin</fullName>
-    <applicationVisibilitiestest>
+    <applicationVisibilities>
         <application>cmcSf__CMC_SFDX</application>
         <default>false</default>
         <visible>true</visible>
-    </applicationVisibilitiestest>
+    </applicationVisibilities>
     <applicationVisibilities>
         <application>copado__Copado</application>
         <default>false</default>
