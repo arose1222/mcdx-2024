@@ -7,7 +7,7 @@
         <locationX>176</locationX>
         <locationY>323</locationY>
         <defaultConnector>
-            <targetReference>Set_Lamination_Default</targetReference>
+            <targetReference>Get_Pricing</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Type Already Set</defaultConnectorLabel>
         <rules>
@@ -27,10 +27,32 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Check_Lamination_Selected</name>
+        <label>Check Lamination Selected</label>
+        <locationX>176</locationX>
+        <locationY>971</locationY>
+        <defaultConnectorLabel>Lamination Not Selected</defaultConnectorLabel>
+        <rules>
+            <name>Lamination_Is_Selected</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Lamination__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Lamination_Price</targetReference>
+            </connector>
+            <label>Lamination Is Selected</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_Pricing_Found</name>
         <label>Check Pricing Found</label>
         <locationX>176</locationX>
-        <locationY>755</locationY>
+        <locationY>647</locationY>
         <defaultConnectorLabel>No Pricing Found</defaultConnectorLabel>
         <rules>
             <name>Pricing_Found</name>
@@ -53,6 +75,12 @@
         <name>fxConvertPriceToNumber</name>
         <dataType>Currency</dataType>
         <expression>VALUE({!Get_Pricing.Base_Price__c})</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>fxPriceWithLamination</name>
+        <dataType>Currency</dataType>
+        <expression>{!fxConvertPriceToNumber} + 250</expression>
         <scale>2</scale>
     </formulas>
     <interviewLabel>Update Bicycle Type {!$Flow.CurrentDateTime}</interviewLabel>
@@ -80,7 +108,7 @@
         <name>Get_Pricing</name>
         <label>Get Pricing</label>
         <locationX>176</locationX>
-        <locationY>647</locationY>
+        <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_Pricing_Found</targetReference>
@@ -98,12 +126,25 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
+        <name>Add_Lamination_Price</name>
+        <label>Add Lamination Price</label>
+        <locationX>44</locationX>
+        <locationY>1079</locationY>
+        <inputAssignments>
+            <field>Base_Price__c</field>
+            <value>
+                <elementReference>fxPriceWithLamination</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Set_Default_Type</name>
         <label>Set Default Type</label>
         <locationX>44</locationX>
         <locationY>431</locationY>
         <connector>
-            <targetReference>Set_Lamination_Default</targetReference>
+            <targetReference>Get_Pricing</targetReference>
         </connector>
         <inputAssignments>
             <field>Type__c</field>
@@ -114,26 +155,13 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <name>Set_Lamination_Default</name>
-        <label>Set Lamination Default</label>
-        <locationX>176</locationX>
-        <locationY>539</locationY>
-        <connector>
-            <targetReference>Get_Pricing</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>Lamination__c</field>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
         <name>Update_Base_Price</name>
         <label>Update Base Price</label>
         <locationX>44</locationX>
         <locationY>863</locationY>
+        <connector>
+            <targetReference>Check_Lamination_Selected</targetReference>
+        </connector>
         <inputAssignments>
             <field>Base_Price__c</field>
             <value>
