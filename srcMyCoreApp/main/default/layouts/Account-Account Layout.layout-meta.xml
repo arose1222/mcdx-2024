@@ -59,6 +59,10 @@
                 <behavior>Edit</behavior>
                 <field>Enrolled_in_Active_Rebate__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>wake_up__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
