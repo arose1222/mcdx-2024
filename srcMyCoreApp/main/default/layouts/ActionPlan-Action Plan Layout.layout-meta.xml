@@ -18,6 +18,10 @@
                 <behavior>Edit</behavior>
                 <field>IsUsingHolidayHours</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Wake_Up__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
