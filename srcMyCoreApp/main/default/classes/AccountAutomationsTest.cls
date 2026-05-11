@@ -19,8 +19,6 @@ private class AccountAutomationsTest {
         acc = AccountAutomations.setDefaultSite(acc);
         System.assertEquals('Single location', acc.Site, 'Default Site is Single location');
     }
-   //Update Changes
-    //Production Deployment Updates 2.0
 
     @isTest static void testDefaultShippingAddress(){
         Account acc = new Account(Name = 'My Test Account');
@@ -35,7 +33,7 @@ private class AccountAutomationsTest {
         Account acc = new Account(Name = 'My Test Account');
         insert acc;
         acc = AccountAutomations.setDefaultPhone(acc);
-        System.assertEquals('3174162111', acc.Phone, 'Default phone number is 3174162111');
+        System.assertEquals('3175031980', acc.Phone, 'Default phone number is 3175031980');
     }
 
     @isTest static void testDefaultURL(){
