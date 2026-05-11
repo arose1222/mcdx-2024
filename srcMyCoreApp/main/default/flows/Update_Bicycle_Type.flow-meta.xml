@@ -4,8 +4,8 @@
     <decisions>
         <name>Check_If_Type_Is_Set</name>
         <label>Check If Type Is Set</label>
-        <locationX>176</locationX>
-        <locationY>323</locationY>
+        <locationX>776</locationX>
+        <locationY>287</locationY>
         <defaultConnector>
             <targetReference>Get_Pricing</targetReference>
         </defaultConnector>
@@ -29,8 +29,11 @@
     <decisions>
         <name>Check_Lamination_Selected</name>
         <label>Check Lamination Selected</label>
-        <locationX>176</locationX>
-        <locationY>971</locationY>
+        <locationX>622</locationX>
+        <locationY>911</locationY>
+        <defaultConnector>
+            <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Lamination Not Selected</defaultConnectorLabel>
         <rules>
             <name>Lamination_Is_Selected</name>
@@ -49,10 +52,35 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Check_Pedal_Type_Is_Blank</name>
+        <label>Check Pedal Type Is Blank</label>
+        <locationX>776</locationX>
+        <locationY>1295</locationY>
+        <defaultConnectorLabel>Pedal Type Already Set</defaultConnectorLabel>
+        <rules>
+            <name>Pedal_Type_Is_Blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Pedal_Type__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Determine_Pedal_Type</targetReference>
+            </connector>
+            <label>Pedal Type Is Blank</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_Pricing_Found</name>
         <label>Check Pricing Found</label>
-        <locationX>176</locationX>
-        <locationY>647</locationY>
+        <locationX>776</locationX>
+        <locationY>695</locationY>
+        <defaultConnector>
+            <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>No Pricing Found</defaultConnectorLabel>
         <rules>
             <name>Pricing_Found</name>
@@ -68,6 +96,65 @@
                 <targetReference>Update_Base_Price</targetReference>
             </connector>
             <label>Pricing Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Determine_Pedal_Type</name>
+        <label>Determine Pedal Type</label>
+        <locationX>446</locationX>
+        <locationY>1403</locationY>
+        <defaultConnectorLabel>Unknown Type — No Action</defaultConnectorLabel>
+        <rules>
+            <name>Type_Is_BMX</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>BMX</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Pedal_Type_Integrated</targetReference>
+            </connector>
+            <label>BMX</label>
+        </rules>
+        <rules>
+            <name>Type_Is_Mountain</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Mountain</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Pedal_Type_Standard</targetReference>
+            </connector>
+            <label>Mountain</label>
+        </rules>
+        <rules>
+            <name>Type_Is_Tandem_Or_Road</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Tandem</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Road</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Pedal_Type_Molded</targetReference>
+            </connector>
+            <label>Tandem or Road</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -107,8 +194,8 @@
     <recordLookups>
         <name>Get_Pricing</name>
         <label>Get Pricing</label>
-        <locationX>176</locationX>
-        <locationY>539</locationY>
+        <locationX>776</locationX>
+        <locationY>587</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_Pricing_Found</targetReference>
@@ -128,8 +215,11 @@
     <recordUpdates>
         <name>Add_Lamination_Price</name>
         <label>Add Lamination Price</label>
-        <locationX>44</locationX>
-        <locationY>1079</locationY>
+        <locationX>490</locationX>
+        <locationY>1019</locationY>
+        <connector>
+            <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
+        </connector>
         <inputAssignments>
             <field>Base_Price__c</field>
             <value>
@@ -141,8 +231,8 @@
     <recordUpdates>
         <name>Set_Default_Type</name>
         <label>Set Default Type</label>
-        <locationX>44</locationX>
-        <locationY>431</locationY>
+        <locationX>644</locationX>
+        <locationY>395</locationY>
         <connector>
             <targetReference>Get_Pricing</targetReference>
         </connector>
@@ -155,10 +245,49 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <name>Set_Pedal_Type_Integrated</name>
+        <label>Set Pedal Type — Integrated</label>
+        <locationX>50</locationX>
+        <locationY>1511</locationY>
+        <inputAssignments>
+            <field>Pedal_Type__c</field>
+            <value>
+                <stringValue>Integrated</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Pedal_Type_Molded</name>
+        <label>Set Pedal Type — Molded</label>
+        <locationX>578</locationX>
+        <locationY>1511</locationY>
+        <inputAssignments>
+            <field>Pedal_Type__c</field>
+            <value>
+                <stringValue>Molded</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Pedal_Type_Standard</name>
+        <label>Set Pedal Type — Standard</label>
+        <locationX>314</locationX>
+        <locationY>1511</locationY>
+        <inputAssignments>
+            <field>Pedal_Type__c</field>
+            <value>
+                <stringValue>Standard</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_Base_Price</name>
         <label>Update Base Price</label>
-        <locationX>44</locationX>
-        <locationY>863</locationY>
+        <locationX>622</locationX>
+        <locationY>803</locationY>
         <connector>
             <targetReference>Check_Lamination_Selected</targetReference>
         </connector>
@@ -171,7 +300,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>50</locationX>
+        <locationX>650</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Check_If_Type_Is_Set</targetReference>
@@ -180,5 +309,5 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
 </Flow>
