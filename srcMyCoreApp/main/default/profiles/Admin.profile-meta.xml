@@ -8656,6 +8656,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>ActionPlan.Wake_Up__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>AdvAccountForecastFact.ForecastedQuantity</field>
         <readable>true</readable>
     </fieldPermissions>
