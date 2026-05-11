@@ -8916,7 +8916,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Bicycle__c.Manufactured_Country__c</field>
+        <field>Bicycle__c.Pedal_Type_Manufacturer__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -52,65 +52,10 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Check_Pedal_Type_For_Surge</name>
-        <label>Check Pedal Type For Surge</label>
-        <locationX>776</locationX>
-        <locationY>1619</locationY>
-        <defaultConnectorLabel>No Surge — Null or Unrecognized</defaultConnectorLabel>
-        <rules>
-            <name>Pedal_Type_Is_Integrated</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Pedal_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Integrated</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Apply_Surge_Integrated</targetReference>
-            </connector>
-            <label>Integrated</label>
-        </rules>
-        <rules>
-            <name>Pedal_Type_Is_Standard</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Pedal_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Standard</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Apply_Surge_Standard</targetReference>
-            </connector>
-            <label>Standard</label>
-        </rules>
-        <rules>
-            <name>Pedal_Type_Is_Molded</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Pedal_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Molded</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Apply_Surge_Molded</targetReference>
-            </connector>
-            <label>Molded</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Check_Pedal_Type_Is_Blank</name>
         <label>Check Pedal Type Is Blank</label>
         <locationX>776</locationX>
         <locationY>1295</locationY>
-        <defaultConnector>
-            <targetReference>Check_Pedal_Type_For_Surge</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>Pedal Type Already Set</defaultConnectorLabel>
         <rules>
             <name>Pedal_Type_Is_Blank</name>
@@ -134,7 +79,7 @@
         <locationX>776</locationX>
         <locationY>695</locationY>
         <defaultConnector>
-            <targetReference>Check_Lamination_Selected</targetReference>
+            <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No Pricing Found</defaultConnectorLabel>
         <rules>
@@ -225,24 +170,6 @@
         <expression>{!fxConvertPriceToNumber} + 250</expression>
         <scale>2</scale>
     </formulas>
-    <formulas>
-        <name>fxSurgeIntegrated</name>
-        <dataType>Currency</dataType>
-        <expression>{!$Record.Base_Price__c} + 500</expression>
-        <scale>2</scale>
-    </formulas>
-    <formulas>
-        <name>fxSurgeMolded</name>
-        <dataType>Currency</dataType>
-        <expression>{!$Record.Base_Price__c} + 650</expression>
-        <scale>2</scale>
-    </formulas>
-    <formulas>
-        <name>fxSurgeStandard</name>
-        <dataType>Currency</dataType>
-        <expression>{!$Record.Base_Price__c} + 100</expression>
-        <scale>2</scale>
-    </formulas>
     <interviewLabel>Update Bicycle Type {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update Bicycle Type</label>
     <processMetadataValues>
@@ -302,45 +229,6 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <name>Apply_Surge_Integrated</name>
-        <label>Apply Surge — Integrated (+$500)</label>
-        <locationX>490</locationX>
-        <locationY>1727</locationY>
-        <inputAssignments>
-            <field>Base_Price__c</field>
-            <value>
-                <elementReference>fxSurgeIntegrated</elementReference>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Apply_Surge_Molded</name>
-        <label>Apply Surge — Molded (+$650)</label>
-        <locationX>1062</locationX>
-        <locationY>1727</locationY>
-        <inputAssignments>
-            <field>Base_Price__c</field>
-            <value>
-                <elementReference>fxSurgeMolded</elementReference>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Apply_Surge_Standard</name>
-        <label>Apply Surge — Standard (+$100)</label>
-        <locationX>776</locationX>
-        <locationY>1727</locationY>
-        <inputAssignments>
-            <field>Base_Price__c</field>
-            <value>
-                <elementReference>fxSurgeStandard</elementReference>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
         <name>Set_Default_Type</name>
         <label>Set Default Type</label>
         <locationX>644</locationX>
@@ -361,9 +249,6 @@
         <label>Set Pedal Type — Integrated</label>
         <locationX>50</locationX>
         <locationY>1511</locationY>
-        <connector>
-            <targetReference>Check_Pedal_Type_For_Surge</targetReference>
-        </connector>
         <inputAssignments>
             <field>Pedal_Type__c</field>
             <value>
@@ -377,9 +262,6 @@
         <label>Set Pedal Type — Molded</label>
         <locationX>578</locationX>
         <locationY>1511</locationY>
-        <connector>
-            <targetReference>Check_Pedal_Type_For_Surge</targetReference>
-        </connector>
         <inputAssignments>
             <field>Pedal_Type__c</field>
             <value>
@@ -393,9 +275,6 @@
         <label>Set Pedal Type — Standard</label>
         <locationX>314</locationX>
         <locationY>1511</locationY>
-        <connector>
-            <targetReference>Check_Pedal_Type_For_Surge</targetReference>
-        </connector>
         <inputAssignments>
             <field>Pedal_Type__c</field>
             <value>
