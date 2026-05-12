@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Handlebar_Type__c</fullName>
+    <label>Handlebar Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Drop</fullName>
+                <default>false</default>
+                <label>Drop</label>
+            </value>
+            <value>
+                <fullName>Flat</fullName>
+                <default>false</default>
+                <label>Flat</label>
+            </value>
+            <value>
+                <fullName>Riser</fullName>
+                <default>false</default>
+                <label>Riser</label>
+            </value>
+            <value>
+                <fullName>Cruiser</fullName>
+                <default>false</default>
+                <label>Cruiser</label>
+            </value>
+            <value>
+                <fullName>Bullhorn</fullName>
+                <default>false</default>
+                <label>Bullhorn</label>
+            </value>
+            <value>
+                <fullName>Butterfly</fullName>
+                <default>false</default>
+                <label>Butterfly</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

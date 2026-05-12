@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pedal_Type_Manufacturer__c</fullName>
+    <label>Pedal Type Manufacturer</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Forest</fullName>
+                <default>false</default>
+                <label>Forest</label>
+            </value>
+            <value>
+                <fullName>Cosmos</fullName>
+                <default>false</default>
+                <label>Cosmos</label>
+            </value>
+            <value>
+                <fullName>Lantern</fullName>
+                <default>false</default>
+                <label>Lantern</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
