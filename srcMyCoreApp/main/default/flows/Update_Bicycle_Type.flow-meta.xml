@@ -2,10 +2,57 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata"><apiVersion>62.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
+        <name>Check_Expedited_Order_copado</name>
+        <label>Check Expedited Order Selected</label>
+        <locationX>820</locationX>
+        <locationY>1211</locationY>
+        <defaultConnector>
+            <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Expedited Order Not Selected</defaultConnectorLabel>
+        <rules>
+            <name>Expedited_Order_Is_Selected_copado</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Expedited_Order__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Expedited_Charge_copado</targetReference>
+            </connector>
+            <label>Expedited Order Is Selected</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Handlebar_Type_Is_Blank_copado</name>
+        <label>Check Handlebar Type Is Blank</label>
+        <locationX>974</locationX>
+        <locationY>2087</locationY>
+        <defaultConnectorLabel>Handlebar Type Already Set</defaultConnectorLabel>
+        <rules>
+            <name>Handlebar_Type_Is_Blank_copado</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Handlebar_Type__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Determine_Handlebar_Type_copado</targetReference>
+            </connector>
+            <label>Handlebar Type Is Blank</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_If_Type_Is_Set</name>
         <label>Check If Type Is Set</label>
-        <locationX>176</locationX>
-        <locationY>323</locationY>
+        <locationX>974</locationX>
+        <locationY>287</locationY>
         <defaultConnector>
             <targetReference>Get_Pricing</targetReference>
         </defaultConnector>
@@ -29,8 +76,11 @@
     <decisions>
         <name>Check_Lamination_Selected</name>
         <label>Check Lamination Selected</label>
-        <locationX>176</locationX>
-        <locationY>971</locationY>
+        <locationX>820</locationX>
+        <locationY>911</locationY>
+        <defaultConnector>
+            <targetReference>Check_Expedited_Order_copado</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Lamination Not Selected</defaultConnectorLabel>
         <rules>
             <name>Lamination_Is_Selected</name>
@@ -49,10 +99,38 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Check_Pedal_Type_Is_Blank</name>
+        <label>Check Pedal Type Is Blank</label>
+        <locationX>974</locationX>
+        <locationY>1595</locationY>
+        <defaultConnector>
+            <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Pedal Type Already Set</defaultConnectorLabel>
+        <rules>
+            <name>Pedal_Type_Is_Blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Pedal_Type__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Determine_Pedal_Type</targetReference>
+            </connector>
+            <label>Pedal Type Is Blank</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_Pricing_Found</name>
         <label>Check Pricing Found</label>
-        <locationX>176</locationX>
-        <locationY>647</locationY>
+        <locationX>974</locationX>
+        <locationY>695</locationY>
+        <defaultConnector>
+            <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>No Pricing Found</defaultConnectorLabel>
         <rules>
             <name>Pricing_Found</name>
@@ -70,11 +148,146 @@
             <label>Pricing Found</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Determine_Handlebar_Type_copado</name>
+        <label>Determine Handlebar Type</label>
+        <locationX>578</locationX>
+        <locationY>2195</locationY>
+        <defaultConnectorLabel>Unknown Type — No Action</defaultConnectorLabel>
+        <rules>
+            <name>Handlebar_BMX_copado</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>BMX</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Handlebar_Type_Bullhorn_copado</targetReference>
+            </connector>
+            <label>BMX</label>
+        </rules>
+        <rules>
+            <name>Handlebar_Mountain_copado</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Mountain</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Handlebar_Type_Flat_copado</targetReference>
+            </connector>
+            <label>Mountain</label>
+        </rules>
+        <rules>
+            <name>Handlebar_Road_copado</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Road</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Handlebar_Type_Drop_copado</targetReference>
+            </connector>
+            <label>Road</label>
+        </rules>
+        <rules>
+            <name>Handlebar_Tandem_copado</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Tandem</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Handlebar_Type_Riser_copado</targetReference>
+            </connector>
+            <label>Tandem</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Determine_Pedal_Type</name>
+        <label>Determine Pedal Type</label>
+        <locationX>688</locationX>
+        <locationY>1703</locationY>
+        <defaultConnector>
+            <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Unknown Type — No Action</defaultConnectorLabel>
+        <rules>
+            <name>Type_Is_BMX</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>BMX</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Pedal_Type_Integrated</targetReference>
+            </connector>
+            <label>BMX</label>
+        </rules>
+        <rules>
+            <name>Type_Is_Mountain</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Mountain</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Pedal_Type_Standard</targetReference>
+            </connector>
+            <label>Mountain</label>
+        </rules>
+        <rules>
+            <name>Type_Is_Tandem_Or_Road</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Tandem</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Road</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Pedal_Type_Molded</targetReference>
+            </connector>
+            <label>Tandem or Road</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <formulas>
         <name>fxConvertPriceToNumber</name>
         <dataType>Currency</dataType>
         <expression>VALUE({!Get_Pricing.Base_Price__c})</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>fxPriceWithExpedited_copado</name>
+        <dataType>Currency</dataType>
+        <expression>{!$Record.Base_Price__c} + 300</expression>
         <scale>2</scale>
     </formulas>
     <formulas>
@@ -107,8 +320,8 @@
     <recordLookups>
         <name>Get_Pricing</name>
         <label>Get Pricing</label>
-        <locationX>176</locationX>
-        <locationY>539</locationY>
+        <locationX>974</locationX>
+        <locationY>587</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_Pricing_Found</targetReference>
@@ -126,10 +339,29 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
+        <name>Add_Expedited_Charge_copado</name>
+        <label>Add Expedited Charge</label>
+        <locationX>688</locationX>
+        <locationY>1319</locationY>
+        <connector>
+            <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Base_Price__c</field>
+            <value>
+                <elementReference>fxPriceWithExpedited_copado</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Add_Lamination_Price</name>
         <label>Add Lamination Price</label>
-        <locationX>44</locationX>
-        <locationY>1079</locationY>
+        <locationX>688</locationX>
+        <locationY>1019</locationY>
+        <connector>
+            <targetReference>Check_Expedited_Order_copado</targetReference>
+        </connector>
         <inputAssignments>
             <field>Base_Price__c</field>
             <value>
@@ -141,8 +373,8 @@
     <recordUpdates>
         <name>Set_Default_Type</name>
         <label>Set Default Type</label>
-        <locationX>44</locationX>
-        <locationY>431</locationY>
+        <locationX>842</locationX>
+        <locationY>395</locationY>
         <connector>
             <targetReference>Get_Pricing</targetReference>
         </connector>
@@ -155,10 +387,110 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <name>Set_Handlebar_Type_Bullhorn_copado</name>
+        <label>Set Handlebar Type — Bullhorn</label>
+        <locationX>50</locationX>
+        <locationY>2303</locationY>
+        <inputAssignments>
+            <field>Handlebar_Type__c</field>
+            <value>
+                <stringValue>Bullhorn</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Handlebar_Type_Drop_copado</name>
+        <label>Set Handlebar Type — Drop</label>
+        <locationX>578</locationX>
+        <locationY>2303</locationY>
+        <inputAssignments>
+            <field>Handlebar_Type__c</field>
+            <value>
+                <stringValue>Drop</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Handlebar_Type_Flat_copado</name>
+        <label>Set Handlebar Type — Flat</label>
+        <locationX>314</locationX>
+        <locationY>2303</locationY>
+        <inputAssignments>
+            <field>Handlebar_Type__c</field>
+            <value>
+                <stringValue>Flat</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Handlebar_Type_Riser_copado</name>
+        <label>Set Handlebar Type — Riser</label>
+        <locationX>842</locationX>
+        <locationY>2303</locationY>
+        <inputAssignments>
+            <field>Handlebar_Type__c</field>
+            <value>
+                <stringValue>Riser</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Pedal_Type_Integrated</name>
+        <label>Set Pedal Type — Integrated</label>
+        <locationX>292</locationX>
+        <locationY>1811</locationY>
+        <connector>
+            <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Pedal_Type__c</field>
+            <value>
+                <stringValue>Integrated</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Pedal_Type_Molded</name>
+        <label>Set Pedal Type — Molded</label>
+        <locationX>820</locationX>
+        <locationY>1811</locationY>
+        <connector>
+            <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Pedal_Type__c</field>
+            <value>
+                <stringValue>Molded</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Pedal_Type_Standard</name>
+        <label>Set Pedal Type — Standard</label>
+        <locationX>556</locationX>
+        <locationY>1811</locationY>
+        <connector>
+            <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Pedal_Type__c</field>
+            <value>
+                <stringValue>Standard</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_Base_Price</name>
         <label>Update Base Price</label>
-        <locationX>44</locationX>
-        <locationY>863</locationY>
+        <locationX>820</locationX>
+        <locationY>803</locationY>
         <connector>
             <targetReference>Check_Lamination_Selected</targetReference>
         </connector>
@@ -171,7 +503,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>50</locationX>
+        <locationX>848</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Check_If_Type_Is_Set</targetReference>
