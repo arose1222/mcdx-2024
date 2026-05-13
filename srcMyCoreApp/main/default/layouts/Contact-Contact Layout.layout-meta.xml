@@ -61,10 +61,6 @@
                 <behavior>Edit</behavior>
                 <field>Charger__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>PAT_Test__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
