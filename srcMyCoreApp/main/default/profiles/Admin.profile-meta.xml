@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+<Profile xmlns="http://soap.sforce.com/2006/04/metadata"
+      xmlns:n1="http://www.w3.org/2001/XMLSchema-instance">
+    <fullName>Admin</fullName>
     <classAccesses>
         <apexClass>AccountAutomations</apexClass>
         <enabled>true</enabled>
@@ -469,6 +471,10 @@
         <field>Product2.Destination__c</field>
         <readable>false</readable>
     </fieldPermissions>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Bicycle_Type</flow>
+    </flowAccesses>
     <layoutAssignments>
         <layout>Account-Account Layout</layout>
     </layoutAssignments>
@@ -505,6 +511,7 @@
     <layoutAssignments>
         <layout>Product2-Product Layout</layout>
     </layoutAssignments>
+    <loginHours n1:nil="true" />
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
