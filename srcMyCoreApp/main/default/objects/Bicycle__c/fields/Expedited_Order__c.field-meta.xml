@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expedited_Order__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates whether this bicycle order is expedited. An expedited order adds a $300 surcharge to the total price.</description>
+    <label>Expedited Order</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
