@@ -8907,7 +8907,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Bicycle__c.Decal_Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Bicycle__c.Expedited_Order__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Bicycle__c.Manufactured_Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Bicycle__c.Pedal_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Bicycle__c.Personal_Decals__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -10077,6 +10097,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Contract.Closing_Notes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Contract.CompanySignedDate</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -10116,6 +10141,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.Follow_Up_Notes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Contract.Name</field>
         <readable>false</readable>
@@ -10123,6 +10153,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contract.OwnerExpirationNotice</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.Pen__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -10142,7 +10177,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Contract.Special_Assignment_Needed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Contract.StartDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.Stephen_Creating_Extra_Work__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -18980,6 +19025,10 @@
         <field>copado__User_Story__c.copado__userStory_reason__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Bicycle_Type</flow>
+    </flowAccesses>
     <layoutAssignments>
         <layout>Account-Account Layout</layout>
     </layoutAssignments>
