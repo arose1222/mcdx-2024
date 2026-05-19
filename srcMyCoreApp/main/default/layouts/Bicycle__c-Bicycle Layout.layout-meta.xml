@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bicycle__c-Bicycle Layout</fullName>
     <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
@@ -31,6 +32,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Pedal_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Brake_Type__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
