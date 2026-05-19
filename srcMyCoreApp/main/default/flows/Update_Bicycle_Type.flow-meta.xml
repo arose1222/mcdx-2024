@@ -2,12 +2,37 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata"><apiVersion>62.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
-        <name>Check_Expedited_Order_copado</name>
-        <label>Check Expedited Order Selected</label>
-        <locationX>820</locationX>
-        <locationY>1211</locationY>
+        <name>Check_Disc_Brakes_copado</name>
+        <label>Check Disc Brakes Selected</label>
+        <locationX>974</locationX>
+        <locationY>1595</locationY>
         <defaultConnector>
             <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Rim Brakes or Not Set — No Surcharge</defaultConnectorLabel>
+        <rules>
+            <name>Disc_Brakes_Is_Selected_copado</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Brake_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Disc Brakes</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Disc_Brake_Charge_copado</targetReference>
+            </connector>
+            <label>Disc Brakes Is Selected</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Expedited_Order_copado</name>
+        <label>Check Expedited Order Selected</label>
+        <locationX>974</locationX>
+        <locationY>1295</locationY>
+        <defaultConnector>
+            <targetReference>Check_Disc_Brakes_copado</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Expedited Order Not Selected</defaultConnectorLabel>
         <rules>
@@ -30,7 +55,7 @@
         <name>Check_Handlebar_Type_Is_Blank_copado</name>
         <label>Check Handlebar Type Is Blank</label>
         <locationX>974</locationX>
-        <locationY>2087</locationY>
+        <locationY>2387</locationY>
         <defaultConnectorLabel>Handlebar Type Already Set</defaultConnectorLabel>
         <rules>
             <name>Handlebar_Type_Is_Blank_copado</name>
@@ -76,8 +101,8 @@
     <decisions>
         <name>Check_Lamination_Selected</name>
         <label>Check Lamination Selected</label>
-        <locationX>820</locationX>
-        <locationY>911</locationY>
+        <locationX>974</locationX>
+        <locationY>995</locationY>
         <defaultConnector>
             <targetReference>Check_Expedited_Order_copado</targetReference>
         </defaultConnector>
@@ -102,7 +127,7 @@
         <name>Check_Pedal_Type_Is_Blank</name>
         <label>Check Pedal Type Is Blank</label>
         <locationX>974</locationX>
-        <locationY>1595</locationY>
+        <locationY>1895</locationY>
         <defaultConnector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </defaultConnector>
@@ -129,7 +154,7 @@
         <locationX>974</locationX>
         <locationY>695</locationY>
         <defaultConnector>
-            <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
+            <targetReference>Check_Lamination_Selected</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No Pricing Found</defaultConnectorLabel>
         <rules>
@@ -152,7 +177,7 @@
         <name>Determine_Handlebar_Type_copado</name>
         <label>Determine Handlebar Type</label>
         <locationX>578</locationX>
-        <locationY>2195</locationY>
+        <locationY>2495</locationY>
         <defaultConnectorLabel>Unknown Type — No Action</defaultConnectorLabel>
         <rules>
             <name>Handlebar_BMX_copado</name>
@@ -219,7 +244,7 @@
         <name>Determine_Pedal_Type</name>
         <label>Determine Pedal Type</label>
         <locationX>688</locationX>
-        <locationY>1703</locationY>
+        <locationY>2003</locationY>
         <defaultConnector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </defaultConnector>
@@ -285,6 +310,12 @@
         <scale>2</scale>
     </formulas>
     <formulas>
+        <name>fxPriceWithDiscBrakes_copado</name>
+        <dataType>Currency</dataType>
+        <expression>{!$Record.Base_Price__c} + 200</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
         <name>fxPriceWithExpedited_copado</name>
         <dataType>Currency</dataType>
         <expression>{!$Record.Base_Price__c} + 300</expression>
@@ -339,12 +370,28 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
-        <name>Add_Expedited_Charge_copado</name>
-        <label>Add Expedited Charge</label>
-        <locationX>688</locationX>
-        <locationY>1319</locationY>
+        <name>Add_Disc_Brake_Charge_copado</name>
+        <label>Add Disc Brake Charge</label>
+        <locationX>842</locationX>
+        <locationY>1703</locationY>
         <connector>
             <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Base_Price__c</field>
+            <value>
+                <elementReference>fxPriceWithDiscBrakes_copado</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Add_Expedited_Charge_copado</name>
+        <label>Add Expedited Charge</label>
+        <locationX>842</locationX>
+        <locationY>1403</locationY>
+        <connector>
+            <targetReference>Check_Disc_Brakes_copado</targetReference>
         </connector>
         <inputAssignments>
             <field>Base_Price__c</field>
@@ -357,8 +404,8 @@
     <recordUpdates>
         <name>Add_Lamination_Price</name>
         <label>Add Lamination Price</label>
-        <locationX>688</locationX>
-        <locationY>1019</locationY>
+        <locationX>842</locationX>
+        <locationY>1103</locationY>
         <connector>
             <targetReference>Check_Expedited_Order_copado</targetReference>
         </connector>
@@ -390,7 +437,7 @@
         <name>Set_Handlebar_Type_Bullhorn_copado</name>
         <label>Set Handlebar Type — Bullhorn</label>
         <locationX>50</locationX>
-        <locationY>2303</locationY>
+        <locationY>2603</locationY>
         <inputAssignments>
             <field>Handlebar_Type__c</field>
             <value>
@@ -403,7 +450,7 @@
         <name>Set_Handlebar_Type_Drop_copado</name>
         <label>Set Handlebar Type — Drop</label>
         <locationX>578</locationX>
-        <locationY>2303</locationY>
+        <locationY>2603</locationY>
         <inputAssignments>
             <field>Handlebar_Type__c</field>
             <value>
@@ -416,7 +463,7 @@
         <name>Set_Handlebar_Type_Flat_copado</name>
         <label>Set Handlebar Type — Flat</label>
         <locationX>314</locationX>
-        <locationY>2303</locationY>
+        <locationY>2603</locationY>
         <inputAssignments>
             <field>Handlebar_Type__c</field>
             <value>
@@ -429,7 +476,7 @@
         <name>Set_Handlebar_Type_Riser_copado</name>
         <label>Set Handlebar Type — Riser</label>
         <locationX>842</locationX>
-        <locationY>2303</locationY>
+        <locationY>2603</locationY>
         <inputAssignments>
             <field>Handlebar_Type__c</field>
             <value>
@@ -442,7 +489,7 @@
         <name>Set_Pedal_Type_Integrated</name>
         <label>Set Pedal Type — Integrated</label>
         <locationX>292</locationX>
-        <locationY>1811</locationY>
+        <locationY>2111</locationY>
         <connector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -458,7 +505,7 @@
         <name>Set_Pedal_Type_Molded</name>
         <label>Set Pedal Type — Molded</label>
         <locationX>820</locationX>
-        <locationY>1811</locationY>
+        <locationY>2111</locationY>
         <connector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -474,7 +521,7 @@
         <name>Set_Pedal_Type_Standard</name>
         <label>Set Pedal Type — Standard</label>
         <locationX>556</locationX>
-        <locationY>1811</locationY>
+        <locationY>2111</locationY>
         <connector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -489,7 +536,7 @@
     <recordUpdates>
         <name>Update_Base_Price</name>
         <label>Update Base Price</label>
-        <locationX>820</locationX>
+        <locationX>842</locationX>
         <locationY>803</locationY>
         <connector>
             <targetReference>Check_Lamination_Selected</targetReference>
@@ -512,5 +559,5 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
 </Flow>
