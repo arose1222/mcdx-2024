@@ -63,6 +63,10 @@
                 <behavior>Edit</behavior>
                 <field>wake_up__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Justification__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
