@@ -10,5 +10,5 @@
 **/layouts/**
 **/*.layout-meta.xml
 **/*.profile-meta.xml
-**/objects/*.xml
+*.object-meta.xml
 
