@@ -11,3 +11,4 @@
 **/*.layout-meta.xml
 **/*.profile-meta.xml
 **/objects/**/*.field-meta.xml
+**/standardValueSets/*.standardValueSet-meta.xml
