@@ -15,8 +15,19 @@
                 <label>Rim Brakes</label>
             </value>
             <value>
+                <fullName>Hydraulic Disc Brakes</fullName>
+                <default>false</default>
+                <label>Hydraulic Disc Brakes</label>
+            </value>
+            <value>
+                <fullName>Mechanical Disc Brakes</fullName>
+                <default>false</default>
+                <label>Mechanical Disc Brakes</label>
+            </value>
+            <value>
                 <fullName>Disc Brakes</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>Disc Brakes</label>
             </value>
         </valueSetDefinition>
