@@ -6,21 +6,19 @@ public class AccountAutomations {
             return a;
         }
     }
-    public static Account setDefaultBillingAddress(Account a){
-        a.billingstreet = 'Basauri, 6'; 
-        a.billingstate = 'Madrid'; 
-        a.billingpostalcode ='28023'; 
+    public static Account setDefaultSite(Account a){
+        a.Site = 'Single location'; 
         return a;
     }
     //Merge Conflict
     public static Account setDefaultShippingAddress(Account a){
-        a.shippingstreet = 'Basauri, 6'; 
-        a.shippingstate = 'Madrid';
-        a.shippingpostalcode ='28023';
+        a.shippingstreet = '10330 N Meridian Rd'; 
+        a.shippingstate = 'Fortville';
+        a.shippingpostalcode ='46040';
         return a;
     }
     public static Account setDefaultPhone(Account a) {
-        a.Phone='3174984122';
+        a.Phone='3174162277';
         return a;
     }
     public static Account setDefaultURL(Account a) {
