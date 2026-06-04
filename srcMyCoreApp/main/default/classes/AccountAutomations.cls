@@ -6,19 +6,18 @@ public class AccountAutomations {
             return a;
         }
     }
-    //Update Changes 2.0
     public static Account setDefaultSite(Account a){
         a.Site = 'Single location'; 
         return a;
     }
     public static Account setDefaultShippingAddress(Account a){
-        a.shippingstreet = '111 W Illinois St'; 
-        a.shippingstate = 'Chicago';
+        a.shippingstreet = '10330 N Meridian Rd'; 
+        a.shippingstate = 'Fortville';
         a.shippingpostalcode ='46040';
         return a;
     }
     public static Account setDefaultPhone(Account a) {
-        a.Phone='3174984122';
+        a.Phone='3174162277';
         return a;
     }
     public static Account setDefaultURL(Account a) {
