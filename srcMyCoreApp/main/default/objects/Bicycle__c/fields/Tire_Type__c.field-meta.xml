@@ -10,9 +10,9 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Tube</fullName>
-                <default>false</default>
-                <label>Tube</label>
+                <fullName>Tubed</fullName>
+                <default>true</default>
+                <label>Tubed</label>
             </value>
             <value>
                 <fullName>Tubeless</fullName>
@@ -23,6 +23,12 @@
                 <fullName>Tubular</fullName>
                 <default>false</default>
                 <label>Tubular</label>
+            </value>
+            <value>
+                <fullName>Tube</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Tube</label>
             </value>
         </valueSetDefinition>
     </valueSet>
