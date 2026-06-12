@@ -7,9 +7,9 @@
         <locationX>974</locationX>
         <locationY>1595</locationY>
         <defaultConnector>
-            <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
+            <targetReference>Check_Tire_Type_copado</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Rim Brakes or Not Set — No Surcharge</defaultConnectorLabel>
+        <defaultConnectorLabel>Rim Brakes or Not Set - No Surcharge</defaultConnectorLabel>
         <rules>
             <name>Mechanical_Disc_Brakes_Is_Selected_copado</name>
             <conditionLogic>and</conditionLogic>
@@ -70,7 +70,7 @@
         <name>Check_Handlebar_Type_Is_Blank_copado</name>
         <label>Check Handlebar Type Is Blank</label>
         <locationX>974</locationX>
-        <locationY>2387</locationY>
+        <locationY>2987</locationY>
         <defaultConnectorLabel>Handlebar Type Already Set</defaultConnectorLabel>
         <rules>
             <name>Handlebar_Type_Is_Blank_copado</name>
@@ -142,7 +142,7 @@
         <name>Check_Pedal_Type_Is_Blank</name>
         <label>Check Pedal Type Is Blank</label>
         <locationX>974</locationX>
-        <locationY>1895</locationY>
+        <locationY>2495</locationY>
         <defaultConnector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </defaultConnector>
@@ -189,11 +189,61 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Check_Suspension_Configuration_copado</name>
+        <label>Check Suspension Configuration</label>
+        <locationX>974</locationX>
+        <locationY>2195</locationY>
+        <defaultConnector>
+            <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Hardtail, Rigid or Not Set - No Surcharge</defaultConnectorLabel>
+        <rules>
+            <name>Full_Suspension_Is_Selected_copado</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Suspension_Configuration__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Full Suspension (Dual)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Full_Suspension_Charge_copado</targetReference>
+            </connector>
+            <label>Full Suspension Is Selected</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Tire_Type_copado</name>
+        <label>Check Tire Type Selected</label>
+        <locationX>974</locationX>
+        <locationY>1895</locationY>
+        <defaultConnector>
+            <targetReference>Check_Suspension_Configuration_copado</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Tubeless, Tubular or Not Set - No Surcharge</defaultConnectorLabel>
+        <rules>
+            <name>Tubed_Tire_Is_Selected_copado</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Tire_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Tubed</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Tubed_Tire_Charge_copado</targetReference>
+            </connector>
+            <label>Tubed Tire Is Selected</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Determine_Handlebar_Type_copado</name>
         <label>Determine Handlebar Type</label>
         <locationX>578</locationX>
-        <locationY>2495</locationY>
-        <defaultConnectorLabel>Unknown Type — No Action</defaultConnectorLabel>
+        <locationY>3095</locationY>
+        <defaultConnectorLabel>Unknown Type - No Action</defaultConnectorLabel>
         <rules>
             <name>Handlebar_BMX_copado</name>
             <conditionLogic>and</conditionLogic>
@@ -259,11 +309,11 @@
         <name>Determine_Pedal_Type</name>
         <label>Determine Pedal Type</label>
         <locationX>688</locationX>
-        <locationY>2003</locationY>
+        <locationY>2603</locationY>
         <defaultConnector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Unknown Type — No Action</defaultConnectorLabel>
+        <defaultConnectorLabel>Unknown Type - No Action</defaultConnectorLabel>
         <rules>
             <name>Type_Is_BMX</name>
             <conditionLogic>and</conditionLogic>
@@ -331,6 +381,12 @@
         <scale>2</scale>
     </formulas>
     <formulas>
+        <name>fxPriceWithFullSuspension_copado</name>
+        <dataType>Currency</dataType>
+        <expression>{!$Record.Base_Price__c} + 100</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
         <name>fxPriceWithHydraulicDiscBrakes_copado</name>
         <dataType>Currency</dataType>
         <expression>{!$Record.Base_Price__c} + 500</expression>
@@ -346,6 +402,12 @@
         <name>fxPriceWithMechanicalDiscBrakes_copado</name>
         <dataType>Currency</dataType>
         <expression>{!$Record.Base_Price__c} + 200</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>fxPriceWithTubedTire_copado</name>
+        <dataType>Currency</dataType>
+        <expression>{!$Record.Base_Price__c} + 50</expression>
         <scale>2</scale>
     </formulas>
     <interviewLabel>Update Bicycle Type {!$Flow.CurrentDateTime}</interviewLabel>
@@ -407,12 +469,28 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <name>Add_Full_Suspension_Charge_copado</name>
+        <label>Add Full Suspension Charge</label>
+        <locationX>842</locationX>
+        <locationY>2303</locationY>
+        <connector>
+            <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Base_Price__c</field>
+            <value>
+                <elementReference>fxPriceWithFullSuspension_copado</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Add_Hydraulic_Disc_Brake_Charge_copado</name>
         <label>Add Hydraulic Disc Brake Charge</label>
         <locationX>974</locationX>
         <locationY>1703</locationY>
         <connector>
-            <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
+            <targetReference>Check_Tire_Type_copado</targetReference>
         </connector>
         <inputAssignments>
             <field>Base_Price__c</field>
@@ -444,12 +522,28 @@
         <locationX>710</locationX>
         <locationY>1703</locationY>
         <connector>
-            <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
+            <targetReference>Check_Tire_Type_copado</targetReference>
         </connector>
         <inputAssignments>
             <field>Base_Price__c</field>
             <value>
                 <elementReference>fxPriceWithMechanicalDiscBrakes_copado</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Add_Tubed_Tire_Charge_copado</name>
+        <label>Add Tubed Tire Charge</label>
+        <locationX>842</locationX>
+        <locationY>2003</locationY>
+        <connector>
+            <targetReference>Check_Suspension_Configuration_copado</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Base_Price__c</field>
+            <value>
+                <elementReference>fxPriceWithTubedTire_copado</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -472,9 +566,9 @@
     </recordUpdates>
     <recordUpdates>
         <name>Set_Handlebar_Type_Bullhorn_copado</name>
-        <label>Set Handlebar Type — Bullhorn</label>
+        <label>Set Handlebar Type - Bullhorn</label>
         <locationX>50</locationX>
-        <locationY>2603</locationY>
+        <locationY>3203</locationY>
         <inputAssignments>
             <field>Handlebar_Type__c</field>
             <value>
@@ -485,9 +579,9 @@
     </recordUpdates>
     <recordUpdates>
         <name>Set_Handlebar_Type_Drop_copado</name>
-        <label>Set Handlebar Type — Drop</label>
+        <label>Set Handlebar Type - Drop</label>
         <locationX>578</locationX>
-        <locationY>2603</locationY>
+        <locationY>3203</locationY>
         <inputAssignments>
             <field>Handlebar_Type__c</field>
             <value>
@@ -498,9 +592,9 @@
     </recordUpdates>
     <recordUpdates>
         <name>Set_Handlebar_Type_Flat_copado</name>
-        <label>Set Handlebar Type — Flat</label>
+        <label>Set Handlebar Type - Flat</label>
         <locationX>314</locationX>
-        <locationY>2603</locationY>
+        <locationY>3203</locationY>
         <inputAssignments>
             <field>Handlebar_Type__c</field>
             <value>
@@ -511,9 +605,9 @@
     </recordUpdates>
     <recordUpdates>
         <name>Set_Handlebar_Type_Riser_copado</name>
-        <label>Set Handlebar Type — Riser</label>
+        <label>Set Handlebar Type - Riser</label>
         <locationX>842</locationX>
-        <locationY>2603</locationY>
+        <locationY>3203</locationY>
         <inputAssignments>
             <field>Handlebar_Type__c</field>
             <value>
@@ -524,9 +618,9 @@
     </recordUpdates>
     <recordUpdates>
         <name>Set_Pedal_Type_Integrated</name>
-        <label>Set Pedal Type — Integrated</label>
+        <label>Set Pedal Type - Integrated</label>
         <locationX>292</locationX>
-        <locationY>2111</locationY>
+        <locationY>2711</locationY>
         <connector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -540,9 +634,9 @@
     </recordUpdates>
     <recordUpdates>
         <name>Set_Pedal_Type_Molded</name>
-        <label>Set Pedal Type — Molded</label>
+        <label>Set Pedal Type - Molded</label>
         <locationX>820</locationX>
-        <locationY>2111</locationY>
+        <locationY>2711</locationY>
         <connector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -556,9 +650,9 @@
     </recordUpdates>
     <recordUpdates>
         <name>Set_Pedal_Type_Standard</name>
-        <label>Set Pedal Type — Standard</label>
+        <label>Set Pedal Type - Standard</label>
         <locationX>556</locationX>
-        <locationY>2111</locationY>
+        <locationY>2711</locationY>
         <connector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -596,5 +690,5 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
 </Flow>

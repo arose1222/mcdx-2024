@@ -182,6 +182,10 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>AccountAutomationsTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>cmcSf__AbstractTestData</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -8933,6 +8937,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Bicycle__c.Personal_Decals__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Bicycle__c.Suspension_Configuration__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
