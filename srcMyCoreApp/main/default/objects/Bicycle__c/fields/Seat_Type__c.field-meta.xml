@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Tire_Type__c</fullName>
-    <label>Tire Type</label>
+    <fullName>Seat_Type__c</fullName>
+    <label>Seat Type</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -10,25 +10,19 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Tubed</fullName>
-                <default>true</default>
-                <label>Tubed</label>
+                <fullName>Road</fullName>
+                <default>false</default>
+                <label>Road</label>
             </value>
             <value>
-                <fullName>Tubeless</fullName>
+                <fullName>Mountain</fullName>
                 <default>false</default>
-                <label>Tubeless</label>
+                <label>Mountain</label>
             </value>
             <value>
-                <fullName>Tubular</fullName>
+                <fullName>Cruiser</fullName>
                 <default>false</default>
-                <label>Tubular</label>
-            </value>
-            <value>
-                <fullName>Tube</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Tube</label>
+                <label>Cruiser</label>
             </value>
         </valueSetDefinition>
     </valueSet>
