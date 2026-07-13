@@ -1,35 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Tire_Type__c</fullName>
-    <label>Tire Type</label>
+    <fullName>Safety_Accessories__c</fullName>
+    <label>Safety Accessories</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
-    <type>Picklist</type>
+    <type>MultiselectPicklist</type>
     <valueSet>
         <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Tubed</fullName>
-                <default>true</default>
-                <label>Tubed</label>
+                <fullName>Light Options</fullName>
+                <default>false</default>
+                <label>Light Options</label>
             </value>
             <value>
-                <fullName>Tubeless</fullName>
+                <fullName>Bell</fullName>
                 <default>false</default>
-                <label>Tubeless</label>
+                <label>Bell</label>
             </value>
             <value>
-                <fullName>Tubular</fullName>
+                <fullName>Mirrors</fullName>
                 <default>false</default>
-                <label>Tubular</label>
-            </value>
-            <value>
-                <fullName>Tube</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Tube</label>
+                <label>Mirrors</label>
             </value>
         </valueSetDefinition>
     </valueSet>
+    <visibleLines>4</visibleLines>
 </CustomField>
