@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
     <interviewLabel>Sample Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Sample Flow</label>
@@ -40,12 +41,25 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <name>Test_Update</name>
+        <label>Test Update</label>
+        <locationX>176</locationX>
+        <locationY>539</locationY>
+        <inputAssignments>
+            <field>Is_Active__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_3_0</name>
         <label>Update 3.0</label>
         <locationX>176</locationX>
         <locationY>431</locationY>
         <connector>
-            <targetReference>Update_4_0</targetReference>
+            <targetReference>Test_Update</targetReference>
         </connector>
         <inputAssignments>
             <field>Description</field>
@@ -54,19 +68,6 @@
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_4_0</name>
-        <label>Update 4.0</label>
-        <locationX>176</locationX>
-        <locationY>539</locationY>
-        <inputAssignments>
-            <field>AboutMe</field>
-            <value>
-                <stringValue></stringValue>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record.Account.CreatedBy.Contact.Individual.LastModifiedBy</inputReference>
     </recordUpdates>
     <start>
         <locationX>50</locationX>
