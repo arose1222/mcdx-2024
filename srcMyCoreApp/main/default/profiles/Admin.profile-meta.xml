@@ -8945,6 +8945,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Bicycle__c.Safety_Accessories__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Bicycle__c.Seat_Type__c</field>
         <readable>true</readable>

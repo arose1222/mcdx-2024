@@ -70,7 +70,7 @@
         <name>Check_Handlebar_Type_Is_Blank_copado</name>
         <label>Check Handlebar Type Is Blank</label>
         <locationX>930</locationX>
-        <locationY>2987</locationY>
+        <locationY>3287</locationY>
         <defaultConnector>
             <targetReference>Check_Seat_Type_Is_Blank_copado</targetReference>
         </defaultConnector>
@@ -145,7 +145,7 @@
         <name>Check_Pedal_Type_Is_Blank</name>
         <label>Check Pedal Type Is Blank</label>
         <locationX>930</locationX>
-        <locationY>2495</locationY>
+        <locationY>2795</locationY>
         <defaultConnector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </defaultConnector>
@@ -192,10 +192,65 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Check_Safety_Accessories_copado</name>
+        <label>Check Safety Accessories Selected</label>
+        <locationX>930</locationX>
+        <locationY>2195</locationY>
+        <defaultConnector>
+            <targetReference>Check_Suspension_Configuration_copado</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Safety Accessory Selected - No Surcharge</defaultConnectorLabel>
+        <rules>
+            <name>Light_Options_Is_Selected_copado</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Safety_Accessories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Light Options</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Light_Options_Charge_copado</targetReference>
+            </connector>
+            <label>Light Options Is Selected</label>
+        </rules>
+        <rules>
+            <name>Bell_Is_Selected_copado</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Safety_Accessories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Bell</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Bell_Charge_copado</targetReference>
+            </connector>
+            <label>Bell Is Selected</label>
+        </rules>
+        <rules>
+            <name>Mirrors_Is_Selected_copado</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Safety_Accessories__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Mirrors</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Mirrors_Charge_copado</targetReference>
+            </connector>
+            <label>Mirrors Is Selected</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_Seat_Type_Is_Blank_copado</name>
         <label>Check Seat Type Is Blank</label>
         <locationX>930</locationX>
-        <locationY>3479</locationY>
+        <locationY>3779</locationY>
         <defaultConnectorLabel>Seat Type Already Set</defaultConnectorLabel>
         <rules>
             <name>Seat_Type_Is_Blank_copado</name>
@@ -217,7 +272,7 @@
         <name>Check_Suspension_Configuration_copado</name>
         <label>Check Suspension Configuration</label>
         <locationX>930</locationX>
-        <locationY>2195</locationY>
+        <locationY>2495</locationY>
         <defaultConnector>
             <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
         </defaultConnector>
@@ -244,7 +299,7 @@
         <locationX>930</locationX>
         <locationY>1895</locationY>
         <defaultConnector>
-            <targetReference>Check_Suspension_Configuration_copado</targetReference>
+            <targetReference>Check_Safety_Accessories_copado</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Tubeless, Tubular or Not Set - No Surcharge</defaultConnectorLabel>
         <rules>
@@ -267,7 +322,7 @@
         <name>Determine_Handlebar_Type_copado</name>
         <label>Determine Handlebar Type</label>
         <locationX>578</locationX>
-        <locationY>3095</locationY>
+        <locationY>3395</locationY>
         <defaultConnector>
             <targetReference>Check_Seat_Type_Is_Blank_copado</targetReference>
         </defaultConnector>
@@ -337,7 +392,7 @@
         <name>Determine_Pedal_Type</name>
         <label>Determine Pedal Type</label>
         <locationX>644</locationX>
-        <locationY>2603</locationY>
+        <locationY>2903</locationY>
         <defaultConnector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </defaultConnector>
@@ -399,7 +454,7 @@
         <name>Determine_Seat_Type_copado</name>
         <label>Determine Seat Type by Bicycle Type</label>
         <locationX>578</locationX>
-        <locationY>3587</locationY>
+        <locationY>3887</locationY>
         <defaultConnectorLabel>Unknown Type - No Action</defaultConnectorLabel>
         <rules>
             <name>Seat_Type_Road_copado</name>
@@ -470,6 +525,12 @@
         <scale>2</scale>
     </formulas>
     <formulas>
+        <name>fxPriceWithBell_copado</name>
+        <dataType>Currency</dataType>
+        <expression>{!$Record.Base_Price__c} + 25</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
         <name>fxPriceWithExpedited_copado</name>
         <dataType>Currency</dataType>
         <expression>{!$Record.Base_Price__c} + 300</expression>
@@ -494,9 +555,21 @@
         <scale>2</scale>
     </formulas>
     <formulas>
+        <name>fxPriceWithLightOptions_copado</name>
+        <dataType>Currency</dataType>
+        <expression>{!$Record.Base_Price__c} + 50</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
         <name>fxPriceWithMechanicalDiscBrakes_copado</name>
         <dataType>Currency</dataType>
         <expression>{!$Record.Base_Price__c} + 200</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>fxPriceWithMirrors_copado</name>
+        <dataType>Currency</dataType>
+        <expression>{!$Record.Base_Price__c} + 30</expression>
         <scale>2</scale>
     </formulas>
     <formulas>
@@ -548,6 +621,22 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
+        <name>Add_Bell_Charge_copado</name>
+        <label>Add Bell Charge</label>
+        <locationX>798</locationX>
+        <locationY>2303</locationY>
+        <connector>
+            <targetReference>Check_Suspension_Configuration_copado</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Base_Price__c</field>
+            <value>
+                <elementReference>fxPriceWithBell_copado</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Add_Expedited_Charge_copado</name>
         <label>Add Expedited Charge</label>
         <locationX>798</locationX>
@@ -567,7 +656,7 @@
         <name>Add_Full_Suspension_Charge_copado</name>
         <label>Add Full Suspension Charge</label>
         <locationX>798</locationX>
-        <locationY>2303</locationY>
+        <locationY>2603</locationY>
         <connector>
             <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
         </connector>
@@ -612,6 +701,22 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <name>Add_Light_Options_Charge_copado</name>
+        <label>Add Light Options Charge</label>
+        <locationX>534</locationX>
+        <locationY>2303</locationY>
+        <connector>
+            <targetReference>Check_Suspension_Configuration_copado</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Base_Price__c</field>
+            <value>
+                <elementReference>fxPriceWithLightOptions_copado</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Add_Mechanical_Disc_Brake_Charge_copado</name>
         <label>Add Mechanical Disc Brake Charge</label>
         <locationX>666</locationX>
@@ -628,12 +733,28 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <name>Add_Mirrors_Charge_copado</name>
+        <label>Add Mirrors Charge</label>
+        <locationX>1062</locationX>
+        <locationY>2303</locationY>
+        <connector>
+            <targetReference>Check_Suspension_Configuration_copado</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Base_Price__c</field>
+            <value>
+                <elementReference>fxPriceWithMirrors_copado</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Add_Tubed_Tire_Charge_copado</name>
         <label>Add Tubed Tire Charge</label>
         <locationX>798</locationX>
         <locationY>2003</locationY>
         <connector>
-            <targetReference>Check_Suspension_Configuration_copado</targetReference>
+            <targetReference>Check_Safety_Accessories_copado</targetReference>
         </connector>
         <inputAssignments>
             <field>Base_Price__c</field>
@@ -663,7 +784,7 @@
         <name>Set_Handlebar_Type_Bullhorn_copado</name>
         <label>Set Handlebar Type - Bullhorn</label>
         <locationX>50</locationX>
-        <locationY>3203</locationY>
+        <locationY>3503</locationY>
         <connector>
             <targetReference>Check_Seat_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -679,7 +800,7 @@
         <name>Set_Handlebar_Type_Drop_copado</name>
         <label>Set Handlebar Type - Drop</label>
         <locationX>578</locationX>
-        <locationY>3203</locationY>
+        <locationY>3503</locationY>
         <connector>
             <targetReference>Check_Seat_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -695,7 +816,7 @@
         <name>Set_Handlebar_Type_Flat_copado</name>
         <label>Set Handlebar Type - Flat</label>
         <locationX>314</locationX>
-        <locationY>3203</locationY>
+        <locationY>3503</locationY>
         <connector>
             <targetReference>Check_Seat_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -711,7 +832,7 @@
         <name>Set_Handlebar_Type_Riser_copado</name>
         <label>Set Handlebar Type - Riser</label>
         <locationX>842</locationX>
-        <locationY>3203</locationY>
+        <locationY>3503</locationY>
         <connector>
             <targetReference>Check_Seat_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -727,7 +848,7 @@
         <name>Set_Pedal_Type_Integrated</name>
         <label>Set Pedal Type - Integrated</label>
         <locationX>248</locationX>
-        <locationY>2711</locationY>
+        <locationY>3011</locationY>
         <connector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -743,7 +864,7 @@
         <name>Set_Pedal_Type_Molded</name>
         <label>Set Pedal Type - Molded</label>
         <locationX>776</locationX>
-        <locationY>2711</locationY>
+        <locationY>3011</locationY>
         <connector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -759,7 +880,7 @@
         <name>Set_Pedal_Type_Standard</name>
         <label>Set Pedal Type - Standard</label>
         <locationX>512</locationX>
-        <locationY>2711</locationY>
+        <locationY>3011</locationY>
         <connector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -775,7 +896,7 @@
         <name>Set_Seat_Type_Cruiser_copado</name>
         <label>Set Seat Type - Cruiser</label>
         <locationX>578</locationX>
-        <locationY>3995</locationY>
+        <locationY>4295</locationY>
         <inputAssignments>
             <field>Seat_Type__c</field>
             <value>
@@ -788,7 +909,7 @@
         <name>Set_Seat_Type_Mountain_copado</name>
         <label>Set Seat Type - Mountain</label>
         <locationX>402</locationX>
-        <locationY>3695</locationY>
+        <locationY>3995</locationY>
         <inputAssignments>
             <field>Seat_Type__c</field>
             <value>
@@ -801,7 +922,7 @@
         <name>Set_Seat_Type_Road_copado</name>
         <label>Set Seat Type - Road</label>
         <locationX>138</locationX>
-        <locationY>3695</locationY>
+        <locationY>3995</locationY>
         <inputAssignments>
             <field>Seat_Type__c</field>
             <value>
@@ -836,5 +957,5 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
 </Flow>
