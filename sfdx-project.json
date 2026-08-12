@@ -1,20 +1,31 @@
 {
   "packageDirectories": [
     {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
       "path": "srcMyCoreApp",
-      "default": true
-    },
-    {
-      "path": "srcMySalesApp",
-      "default": false
+      "default": true,
+      "package": "Core Package",
+      "versionDescription": ""
     },
     {
       "path": "srcMyServiceApp",
+      "default": false
+    },
+    {
+      "path": "srcMySalesApp",
+      "package": "Package Test",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
       "default": false
     }
   ],
   "name": "cohortFall22",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "67.0"
+  "sourceApiVersion": "67.0",
+  "packageAliases": {
+    "Package Test": "0HoHs000000005aKAA",
+    "Core Package": "0HoHs000000oQOtKAM"
+  }
 }
