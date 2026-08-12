@@ -3,11 +3,11 @@
     <dataKitSource>LOCAL</dataKitSource>
     <dataKitType>SANDBOX</dataKitType>
     <dataSpaceDefinitionDevName>default</dataSpaceDefinitionDevName>
-    <deploymentOrder>{&quot;isAutoSequence&quot;:true,&quot;sequence&quot;:[{&quot;devName&quot;:&quot;Abhi_Test&quot;,&quot;type&quot;:&quot;MktDataLakeObject&quot;,&quot;id&quot;:&quot;0gODk000000Cba8&quot;}]}</deploymentOrder>
+    <deploymentOrder>{&quot;isAutoSequence&quot;:true,&quot;sequence&quot;:[{&quot;devName&quot;:&quot;Abhi_Test&quot;,&quot;type&quot;:&quot;MktDataLakeObject&quot;,&quot;id&quot;:&quot;0gODk000000Cba8&quot;},{&quot;devName&quot;:&quot;Observation&quot;,&quot;type&quot;:&quot;MktDataLakeObject&quot;,&quot;id&quot;:&quot;0gODk000000005M&quot;}]}</deploymentOrder>
     <developerName>DK02</developerName>
     <isDeployed>false</isDeployed>
     <isEnabled>false</isEnabled>
     <masterLabel>DK02</masterLabel>
     <useDeterministicNaming>false</useDeterministicNaming>
-    <versionNumber>2.0</versionNumber>
+    <versionNumber>3.0</versionNumber>
 </DataPackageKitDefinition>
