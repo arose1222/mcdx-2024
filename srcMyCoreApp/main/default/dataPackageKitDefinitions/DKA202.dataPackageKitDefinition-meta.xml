@@ -3,11 +3,11 @@
     <dataKitSource>LOCAL</dataKitSource>
     <dataKitType>NONE</dataKitType>
     <dataSpaceDefinitionDevName>default</dataSpaceDefinitionDevName>
-    <deploymentOrder>{&quot;isAutoSequence&quot;:true,&quot;sequence&quot;:[{&quot;devName&quot;:&quot;Test_DLO&quot;,&quot;type&quot;:&quot;MktDataLakeObject&quot;,&quot;id&quot;:&quot;0gODk000000005W&quot;}]}</deploymentOrder>
+    <deploymentOrder>{&quot;isAutoSequence&quot;:true,&quot;sequence&quot;:[{&quot;devName&quot;:&quot;Test_DLO&quot;,&quot;type&quot;:&quot;MktDataLakeObject&quot;,&quot;id&quot;:&quot;0gODk000000005W&quot;},{&quot;devName&quot;:&quot;Test_DLO_2&quot;,&quot;type&quot;:&quot;MktDataLakeObject&quot;,&quot;id&quot;:&quot;0gODk000000005b&quot;}]}</deploymentOrder>
     <developerName>DKA202</developerName>
     <isDeployed>false</isDeployed>
     <isEnabled>false</isEnabled>
     <masterLabel>DKA202</masterLabel>
     <useDeterministicNaming>false</useDeterministicNaming>
-    <versionNumber>6.0</versionNumber>
+    <versionNumber>7.0</versionNumber>
 </DataPackageKitDefinition>
