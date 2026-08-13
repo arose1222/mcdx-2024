@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataPackageKitDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <dataKitSource>LOCAL</dataKitSource>
+    <dataKitType>SANDBOX</dataKitType>
+    <dataSpaceDefinitionDevName>default</dataSpaceDefinitionDevName>
+    <deploymentOrder>{&quot;isAutoSequence&quot;:true,&quot;sequence&quot;:[{&quot;devName&quot;:&quot;Test_DLO1&quot;,&quot;type&quot;:&quot;MktDataLakeObject&quot;,&quot;id&quot;:&quot;0gODk000000005W&quot;},{&quot;devName&quot;:&quot;Product_Updates_20&quot;,&quot;type&quot;:&quot;MktDataLakeObject&quot;,&quot;id&quot;:&quot;0gODk000000005g&quot;}]}</deploymentOrder>
+    <developerName>DKOA203</developerName>
+    <isDeployed>false</isDeployed>
+    <isEnabled>false</isEnabled>
+    <masterLabel>DKOA203</masterLabel>
+    <useDeterministicNaming>false</useDeterministicNaming>
+    <versionNumber>3.0</versionNumber>
+</DataPackageKitDefinition>
