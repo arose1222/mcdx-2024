@@ -3,11 +3,11 @@
     <dataKitSource>LOCAL</dataKitSource>
     <dataKitType>SANDBOX</dataKitType>
     <dataSpaceDefinitionDevName>default</dataSpaceDefinitionDevName>
-    <deploymentOrder>{&quot;isAutoSequence&quot;:true,&quot;sequence&quot;:[{&quot;devName&quot;:&quot;Test_DLO1&quot;,&quot;type&quot;:&quot;MktDataLakeObject&quot;,&quot;id&quot;:&quot;0gODk000000005W&quot;},{&quot;devName&quot;:&quot;Product_Updates_20&quot;,&quot;type&quot;:&quot;MktDataLakeObject&quot;,&quot;id&quot;:&quot;0gODk000000005g&quot;}]}</deploymentOrder>
+    <deploymentOrder>{&quot;isAutoSequence&quot;:true,&quot;sequence&quot;:[{&quot;devName&quot;:&quot;Test_DLO1&quot;,&quot;type&quot;:&quot;MktDataLakeObject&quot;,&quot;id&quot;:&quot;0gODk000000005W&quot;},{&quot;devName&quot;:&quot;Test_DLO_21&quot;,&quot;type&quot;:&quot;MktDataLakeObject&quot;,&quot;id&quot;:&quot;0gODk000000005b&quot;},{&quot;devName&quot;:&quot;Product_Updates_20&quot;,&quot;type&quot;:&quot;MktDataLakeObject&quot;,&quot;id&quot;:&quot;0gODk000000005g&quot;}]}</deploymentOrder>
     <developerName>DKOA203</developerName>
     <isDeployed>false</isDeployed>
     <isEnabled>false</isEnabled>
     <masterLabel>DKOA203</masterLabel>
     <useDeterministicNaming>false</useDeterministicNaming>
-    <versionNumber>3.0</versionNumber>
+    <versionNumber>4.0</versionNumber>
 </DataPackageKitDefinition>
