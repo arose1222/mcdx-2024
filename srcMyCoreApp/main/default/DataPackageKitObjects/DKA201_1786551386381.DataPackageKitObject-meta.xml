@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataPackageKitObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>DKA201</masterLabel>
+    <parentDataPackageKitDefinitionName>DKA201</parentDataPackageKitDefinitionName>
+    <referenceObjectName>DLOA201</referenceObjectName>
+    <referenceObjectType>DataSourceObject</referenceObjectType>
+</DataPackageKitObject>

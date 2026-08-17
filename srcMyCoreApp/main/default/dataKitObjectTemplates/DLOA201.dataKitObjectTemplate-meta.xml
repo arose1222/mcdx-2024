@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataKitObjectTemplate xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <developerName xsi:nil="true"/>
+    <entityPayload>{&quot;dataSpaceName&quot;:&quot;default&quot;,&quot;type&quot;:&quot;DLO&quot;,&quot;developerName&quot;:&quot;DLO_DLOA201&quot;,&quot;dataSpaceFilterCriteriaRepresentation&quot;:{&quot;childType&quot;:&quot;CONDITION&quot;,&quot;operator&quot;:&quot;OR&quot;,&quot;conditions&quot;:[{&quot;targetObjectName&quot;:&quot;DLOA201__dll&quot;,&quot;filterFieldName&quot;:&quot;Field_1__c&quot;,&quot;operator&quot;:&quot;EQUALS&quot;,&quot;value&quot;:&quot;SHOW&quot;,&quot;valueType&quot;:&quot;Text&quot;}]}}</entityPayload>
+    <masterLabel>DLOA201__dll</masterLabel>
+    <parentDataPackageKitDefinitionName xsi:nil="true"/>
+    <sourceObject>0viDk00000001TTIAY</sourceObject>
+    <sourceObjectType>DataSpaceMember</sourceObjectType>
+    <templateVersion>1</templateVersion>
+</DataKitObjectTemplate>

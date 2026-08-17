@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataKitObjectDependency xmlns="http://soap.sforce.com/2006/04/metadata">
+    <dataPackageKitDef>DKA201</dataPackageKitDef>
+    <developerName>DLOA201</developerName>
+    <masterLabel>DLOA201__dll</masterLabel>
+    <sourceObject>DLOA201</sourceObject>
+    <sourceObjectType>DataSourceObject</sourceObjectType>
+    <targetObject>DLOA201</targetObject>
+</DataKitObjectDependency>
