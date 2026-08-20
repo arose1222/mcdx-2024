@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -47,6 +48,10 @@
                 <behavior>Edit</behavior>
                 <field>Tread_Style__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>BDR__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -89,6 +94,10 @@
                 <behavior>Edit</behavior>
                 <field>Decal_Description__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Safety_Accessories__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -112,10 +121,9 @@
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
+        <customLabel>false</customLabel>
+        <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
-        <label>Custom Links</label>
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
