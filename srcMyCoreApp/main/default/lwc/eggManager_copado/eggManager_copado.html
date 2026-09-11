@@ -1,0 +1,40 @@
+<template>
+    <lightning-card title="Egg Manager" icon-name="standard:product">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+        </template>
+        <div class="slds-p-around_medium">
+            <lightning-combobox
+                label="Egg Type"
+                value={selectedEggType}
+                options={eggTypeOptions}
+                onchange={handleTypeChange}
+                placeholder="Select Egg Type"
+                required>
+            </lightning-combobox>
+            <div class="slds-m-top_small">
+                <lightning-combobox
+                    label="Egg Size"
+                    value={selectedEggSize}
+                    options={eggSizeOptions}
+                    onchange={handleSizeChange}
+                    placeholder="Select Egg Size"
+                    required>
+                </lightning-combobox>
+            </div>
+            <div class="slds-m-top_medium">
+                <lightning-button
+                    label="Save"
+                    variant="brand"
+                    onclick={handleSave}
+                    class="slds-m-right_small">
+                </lightning-button>
+                <lightning-button
+                    label="Reset"
+                    variant="neutral"
+                    onclick={handleReset}>
+                </lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>
