@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Egg Manager Application Page featuring the Egg Manager LWC at the top</description>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>eggManager_copado</componentName>
+                <identifier>c_eggManager_copado_top</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Egg Manager App Page</masterLabel>
+    <template>
+        <name>flexipage:defaultAppHomeTemplate</name>
+    </template>
+    <type>AppPage</type>
+</FlexiPage>
