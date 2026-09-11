@@ -1,6 +1,15 @@
 <template>
     <lightning-card title="Egg Entry Form" icon-name="standard:product">
         <div class="slds-p-around_medium">
+            <lightning-input
+                type="text"
+                name="orderName"
+                label="Order Name"
+                value={orderName}
+                required
+                onchange={handleOrderNameChange}
+                class="slds-m-bottom_small">
+            </lightning-input>
             <lightning-combobox
                 name="eggType"
                 label="Egg Type"
@@ -35,8 +44,26 @@
                 placeholder="Enter optional description..."
                 value={description}
                 onchange={handleDescriptionChange}
-                class="slds-m-bottom_medium">
+                class="slds-m-bottom_small">
             </lightning-textarea>
+            <lightning-input
+                type="date"
+                name="deliveryDate"
+                label="Delivery Date"
+                value={deliveryDate}
+                onchange={handleDeliveryDateChange}
+                class="slds-m-bottom_small">
+            </lightning-input>
+            <lightning-input
+                type="number"
+                name="dozensRequested"
+                label="Dozens Requested"
+                value={dozensRequested}
+                min="1"
+                step="1"
+                onchange={handleDozensRequestedChange}
+                class="slds-m-bottom_medium">
+            </lightning-input>
             <template if:true={errorMessage}>
                 <div class="slds-notify slds-notify_alert slds-alert_error slds-m-bottom_small" role="alert">
                     <lightning-icon icon-name="utility:error" alternative-text="error" size="x-small" class="slds-m-right_x-small"></lightning-icon>
@@ -46,12 +73,9 @@
             <div class="slds-grid slds-gutters slds-m-top_small">
                 <div class="slds-col">
                     <lightning-button variant="brand" label="Save" onclick={handleSave} disabled={isSaving}></lightning-button>
-                    <lightning-button variant="neutral" label="Reset" onclick={handleReset} disabled={isSaving} class="slds-m-left_small"></lightning-button>
+                    <lightning-button variant="neutral" label="Reset" onclick={handleReset} class="slds-m-left_small"></lightning-button>
                 </div>
             </div>
-            <template if:true={isSaving}>
-                <lightning-spinner alternative-text="Saving..." size="small"></lightning-spinner>
-            </template>
         </div>
     </lightning-card>
 </template>
