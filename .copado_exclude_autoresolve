@@ -10,4 +10,5 @@
 **/layouts/**
 **/*.layout-meta.xml
 **/*.profile-meta.xml
-**/objects/*.xml
+**/objects/**/*.field-meta.xml
+**/standardValueSets/*.standardValueSet-meta.xml

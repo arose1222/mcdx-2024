@@ -9,10 +9,6 @@
       "versionDescription": ""
     },
     {
-      "path": "srcMySalesApp",
-      "default": false
-    },
-    {
       "path": "srcMyServiceApp",
       "default": false
     },

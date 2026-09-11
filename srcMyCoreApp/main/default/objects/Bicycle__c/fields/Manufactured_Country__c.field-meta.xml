@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Type__c</fullName>
-    <label>Type</label>
+    <fullName>Manufactured_Country__c</fullName>
+    <label>Manufactured Country</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -10,24 +10,24 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>BMX</fullName>
+                <fullName>US</fullName>
                 <default>false</default>
-                <label>BMX</label>
+                <label>US</label>
             </value>
             <value>
-                <fullName>Tandem</fullName>
+                <fullName>China</fullName>
                 <default>false</default>
-                <label>Tandem</label>
+                <label>China</label>
             </value>
             <value>
-                <fullName>Road</fullName>
+                <fullName>Taiwan</fullName>
                 <default>false</default>
-                <label>Road</label>
+                <label>Taiwan</label>
             </value>
             <value>
-                <fullName>Mountain</fullName>
+                <fullName>Mexico</fullName>
                 <default>false</default>
-                <label>Mountain</label>
+                <label>Mexico</label>
             </value>
         </valueSetDefinition>
     </valueSet>

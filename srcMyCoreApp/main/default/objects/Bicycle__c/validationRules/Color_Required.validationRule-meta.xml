@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Color_Required</fullName>
+    <active>true</active>
+    <description>Ensures a Color is always selected when creating or editing a Bicycle record.</description>
+    <errorConditionFormula>ISBLANK(TEXT(Color__c))</errorConditionFormula>
+    <errorMessage>A Color must be selected before saving a Bicycle record.</errorMessage>
+</ValidationRule>

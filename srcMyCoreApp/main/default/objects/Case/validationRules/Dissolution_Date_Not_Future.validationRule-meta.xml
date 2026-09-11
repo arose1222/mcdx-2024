@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dissolution_Date_Not_Future</fullName>
+    <active>true</active>
+    <description>Prevent future dates in Dissolution Date field</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(Dissolution_Date__c)), Dissolution_Date__c &gt; TODAY())</errorConditionFormula>
+    <errorDisplayField>Dissolution_Date__c</errorDisplayField>
+    <errorMessage>Dissolution Date cannot be in the future</errorMessage>
+</ValidationRule>
