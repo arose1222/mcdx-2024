@@ -12,7 +12,7 @@ private class eggControllerTest_copado {
         );
     }
 
-    // ── Picklist ──────────────────────────────────────────────────────────────
+    // ── Picklist ────────────────────────────────────────────────────────────
 
     @IsTest
     static void testGetPicklistValues_success() {
