@@ -14,7 +14,15 @@ public with sharing class eggController_copado {
     }
 
     @AuraEnabled
-    public static Id createEggRecord(String eggType, String eggSize, Date dateCollected, String description) {
+    public static Id createEggRecord(
+        String  eggType,
+        String  eggSize,
+        Date    dateCollected,
+        String  description,
+        String  orderName,
+        Date    deliveryDate,
+        Integer dozensRequested
+    ) {
         try {
             if (String.isBlank(eggType)) {
                 throw new AuraHandledException('Egg Type is required.');
@@ -25,15 +33,29 @@ public with sharing class eggController_copado {
             if (dateCollected != null && dateCollected > Date.today()) {
                 throw new AuraHandledException('Date Collected cannot be in the future.');
             }
+            if (String.isBlank(orderName)) {
+                throw new AuraHandledException('Order Name is required.');
+            }
+            if (deliveryDate != null && deliveryDate < Date.today()) {
+                throw new AuraHandledException('Delivery Date cannot be in the past.');
+            }
+            if (dozensRequested != null && dozensRequested <= 0) {
+                throw new AuraHandledException('Dozens Requested must be greater than zero.');
+            }
+
             Egg__c newEgg = new Egg__c(
-                Egg_Type__c       = eggType,
-                Egg_Size__c       = eggSize,
-                Date_Collected__c = dateCollected,
-                Description__c    = description,
-                Active__c         = true
+                Egg_Type__c         = eggType,
+                Egg_Size__c         = eggSize,
+                Date_Collected__c   = dateCollected,
+                Description__c      = description,
+                Active__c           = true,
+                Order_Name__c       = orderName,
+                Delivery_Date__c    = deliveryDate,
+                Dozens_Requested__c = dozensRequested
             );
             insert newEgg;
             return newEgg.Id;
+
         } catch (AuraHandledException ex) {
             throw ex;
         } catch (Exception ex) {
