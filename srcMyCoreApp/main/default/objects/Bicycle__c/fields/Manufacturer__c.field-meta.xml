@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Manufacturer__c</fullName>
+    <description>Bicycle brand selected when the record is created. Road bicycles are assigned Schwinn automatically.</description>
+    <inlineHelpText>Choose Trek, Giant, or Schwinn. Road bicycles are set to Schwinn when the record is saved.</inlineHelpText>
+    <label>Manufacturer</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Trek</fullName>
+                <default>false</default>
+                <label>Trek</label>
+            </value>
+            <value>
+                <fullName>Giant</fullName>
+                <default>false</default>
+                <label>Giant</label>
+            </value>
+            <value>
+                <fullName>Schwinn</fullName>
+                <default>false</default>
+                <label>Schwinn</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
