@@ -97,7 +97,7 @@
         <locationX>930</locationX>
         <locationY>287</locationY>
         <defaultConnector>
-            <targetReference>Get_Pricing</targetReference>
+            <targetReference>Check_Road_Type_copado</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Type Already Set</defaultConnectorLabel>
         <rules>
@@ -189,6 +189,31 @@
                 <targetReference>Update_Base_Price</targetReference>
             </connector>
             <label>Pricing Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Road_Type_copado</name>
+        <label>Check Road Type</label>
+        <locationX>930</locationX>
+        <locationY>450</locationY>
+        <defaultConnector>
+            <targetReference>Get_Pricing</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Road</defaultConnectorLabel>
+        <rules>
+            <name>Type_Is_Road_copado</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Road</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Manufacturer_Schwinn_copado</targetReference>
+            </connector>
+            <label>Type Is Road</label>
         </rules>
     </decisions>
     <decisions>
@@ -770,7 +795,7 @@
         <locationX>798</locationX>
         <locationY>395</locationY>
         <connector>
-            <targetReference>Get_Pricing</targetReference>
+            <targetReference>Check_Road_Type_copado</targetReference>
         </connector>
         <inputAssignments>
             <field>Type__c</field>
@@ -840,6 +865,22 @@
             <field>Handlebar_Type__c</field>
             <value>
                 <stringValue>Riser</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Manufacturer_Schwinn_copado</name>
+        <label>Set Manufacturer - Schwinn</label>
+        <locationX>666</locationX>
+        <locationY>550</locationY>
+        <connector>
+            <targetReference>Get_Pricing</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Manufacturer__c</field>
+            <value>
+                <stringValue>Schwinn</stringValue>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
