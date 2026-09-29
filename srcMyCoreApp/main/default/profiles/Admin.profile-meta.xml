@@ -8616,7 +8616,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.XID__c</field>
+        <field>Account.wake_up__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
