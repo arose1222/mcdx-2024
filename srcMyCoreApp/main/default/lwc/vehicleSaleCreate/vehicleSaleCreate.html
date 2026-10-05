@@ -1,0 +1,212 @@
+<template>
+    <lightning-card title="Record a Vehicle Sale" icon-name="custom:custom31">
+        <div class="slds-p-around_medium">
+            <div class="slds-box slds-theme_shade slds-m-bottom_medium" role="status" aria-live="polite">
+                <p class="slds-text-title_caps">Vehicles sold</p>
+                <p class="slds-text-heading_large">{soldCount}</p>
+                <p class="slds-text-body_small">{soldCountLabel}</p>
+            </div>
+
+            <template lwc:if={createdSale}>
+                <div class="slds-notify slds-notify_alert slds-theme_success slds-m-bottom_medium" role="status">
+                    <span class="slds-assistive-text">Success</span>
+                    <h2>
+                        {createdSale.vehicleSummary} was saved as {createdSale.saleNumber}.
+                    </h2>
+                    <div class="slds-m-top_x-small">
+                        <lightning-button
+                            variant="base"
+                            label="View sale"
+                            onclick={handleViewSale}>
+                        </lightning-button>
+                    </div>
+                </div>
+            </template>
+
+            <form onsubmit={handleSubmit} aria-describedby="sale-instructions">
+                <p id="sale-instructions" class="slds-m-bottom_medium">
+                    Enter the vehicle specs. Saving creates the sale record and adds it to the vehicles sold count.
+                </p>
+
+                <fieldset class="slds-form-element slds-m-bottom_medium">
+                    <legend class="slds-text-heading_small slds-m-bottom_small">Vehicle</legend>
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input
+                                label="VIN"
+                                data-field="vin"
+                                value={vin}
+                                required
+                                maxlength="17"
+                                field-level-help="17 characters. The letters I, O, and Q are not used."
+                                onchange={handleChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input
+                                label="Make"
+                                data-field="make"
+                                value={make}
+                                required
+                                onchange={handleChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input
+                                label="Model"
+                                data-field="model"
+                                value={model}
+                                required
+                                onchange={handleChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input
+                                type="number"
+                                label="Model Year"
+                                data-field="modelYear"
+                                value={modelYear}
+                                required
+                                min="1900"
+                                step="1"
+                                onchange={handleChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input
+                                label="Trim"
+                                data-field="trim"
+                                value={trim}
+                                onchange={handleChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-combobox
+                                label="Body Style"
+                                data-field="bodyStyle"
+                                value={bodyStyle}
+                                options={bodyStyleOptions}
+                                placeholder="Select a body style"
+                                onchange={handleChange}>
+                            </lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input
+                                label="Exterior Color"
+                                data-field="exteriorColor"
+                                value={exteriorColor}
+                                onchange={handleChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input
+                                label="Interior Color"
+                                data-field="interiorColor"
+                                value={interiorColor}
+                                onchange={handleChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input
+                                type="number"
+                                label="Mileage"
+                                data-field="mileage"
+                                value={mileage}
+                                min="0"
+                                step="1"
+                                onchange={handleChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-combobox
+                                label="Fuel Type"
+                                data-field="fuelType"
+                                value={fuelType}
+                                options={fuelTypeOptions}
+                                placeholder="Select a fuel type"
+                                onchange={handleChange}>
+                            </lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-combobox
+                                label="Transmission"
+                                data-field="transmission"
+                                value={transmission}
+                                options={transmissionOptions}
+                                placeholder="Select a transmission"
+                                onchange={handleChange}>
+                            </lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-combobox
+                                label="Drivetrain"
+                                data-field="drivetrain"
+                                value={drivetrain}
+                                options={drivetrainOptions}
+                                placeholder="Select a drivetrain"
+                                onchange={handleChange}>
+                            </lightning-combobox>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="slds-form-element">
+                    <legend class="slds-text-heading_small slds-m-bottom_small">Sale</legend>
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input
+                                type="number"
+                                label="Sale Price"
+                                data-field="salePrice"
+                                value={salePrice}
+                                required
+                                min="0.01"
+                                step="0.01"
+                                formatter="currency"
+                                onchange={handleChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input
+                                type="date"
+                                label="Sale Date"
+                                data-field="saleDate"
+                                value={saleDate}
+                                required
+                                onchange={handleChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input
+                                label="Buyer Name"
+                                data-field="buyerName"
+                                value={buyerName}
+                                onchange={handleChange}>
+                            </lightning-input>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="slds-m-top_medium">
+                    <lightning-button
+                        variant="neutral"
+                        label="Clear"
+                        type="button"
+                        onclick={handleReset}
+                        class="slds-m-right_x-small">
+                    </lightning-button>
+                    <lightning-button
+                        variant="brand"
+                        type="submit"
+                        label="Record Sale"
+                        disabled={isSaving}>
+                    </lightning-button>
+                </div>
+            </form>
+
+            <template lwc:if={isSaving}>
+                <lightning-spinner alternative-text="Recording vehicle sale" size="medium"></lightning-spinner>
+            </template>
+        </div>
+    </lightning-card>
+</template>
