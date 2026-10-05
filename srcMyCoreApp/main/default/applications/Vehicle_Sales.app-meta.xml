@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Track vehicles sold and record a sale from the specifications an agent enters.</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Vehicle Sales</label>
+    <navType>Standard</navType>
+    <tabs>Record_Vehicle_Sale</tabs>
+    <tabs>Vehicle_Sale__c</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>
