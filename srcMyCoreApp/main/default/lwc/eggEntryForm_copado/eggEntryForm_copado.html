@@ -35,6 +35,8 @@
                 name="dateCollected"
                 label="Date Collected"
                 value={dateCollected}
+                required
+                field-level-help="Expiration Date is calculated automatically as 13 days after this date."
                 onchange={handleDateChange}
                 class="slds-m-bottom_small">
             </lightning-input>
