@@ -12,8 +12,6 @@ private class eggControllerTest_copado {
         );
     }
 
-    // ── Picklist ────────────────────────────────────────────────────────────
-
     @IsTest
     static void testGetPicklistValues_success() {
         Test.startTest();
@@ -25,8 +23,6 @@ private class eggControllerTest_copado {
         System.assert(!result.get('eggTypes').isEmpty(), 'eggTypes should not be empty');
         System.assert(!result.get('eggSizes').isEmpty(), 'eggSizes should not be empty');
     }
-
-    // ── createEggRecord - success paths ───────────────────────────────────────
 
     @IsTest
     static void testCreateEggRecord_success() {
@@ -89,7 +85,33 @@ private class eggControllerTest_copado {
         System.assertEquals(null, egg.Description__c);
     }
 
-    // ── createEggRecord - validation failures ─────────────────────────────────
+    @IsTest
+    static void testExpirationDate_setOnCreateViaController() {
+        Date collected = Date.today().addDays(-2);
+        Test.startTest();
+        Id eggId = eggController_copado.createEggRecord(
+            'Chicken', 'Large', collected, null, 'Order Exp', null, null
+        );
+        Test.stopTest();
+        Egg__c egg = [SELECT Expiration_Date__c FROM Egg__c WHERE Id = :eggId];
+        System.assertEquals(collected.addDays(13), egg.Expiration_Date__c,
+            'Expiration should be 13 days after Date Collected');
+    }
+
+    @IsTest
+    static void testExpirationDate_recalculatedWhenDateCollectedChanges() {
+        Egg__c egg = [SELECT Id, Date_Collected__c, Expiration_Date__c FROM Egg__c LIMIT 1];
+        System.assertEquals(egg.Date_Collected__c.addDays(13), egg.Expiration_Date__c,
+            'Initial expiration should be Date Collected + 13');
+        Date newDate = Date.today().addDays(-5);
+        Test.startTest();
+        egg.Date_Collected__c = newDate;
+        update egg;
+        Test.stopTest();
+        Egg__c updated = [SELECT Expiration_Date__c FROM Egg__c WHERE Id = :egg.Id];
+        System.assertEquals(newDate.addDays(13), updated.Expiration_Date__c,
+            'Expiration should be recalculated when Date Collected changes');
+    }
 
     @IsTest
     static void testCreateEggRecord_blankEggType() {
@@ -111,6 +133,17 @@ private class eggControllerTest_copado {
         } catch (AuraHandledException ex) { thrown = true; }
         Test.stopTest();
         System.assert(thrown, 'Should throw for blank Egg Size');
+    }
+
+    @IsTest
+    static void testCreateEggRecord_nullDateCollected() {
+        Boolean thrown = false;
+        Test.startTest();
+        try {
+            eggController_copado.createEggRecord('Chicken', 'Large', null, 'Test', 'Order X', null, null);
+        } catch (AuraHandledException ex) { thrown = true; }
+        Test.stopTest();
+        System.assert(thrown, 'Should throw for null Date Collected');
     }
 
     @IsTest
@@ -168,8 +201,6 @@ private class eggControllerTest_copado {
         System.assert(thrown, 'Should throw for negative Dozens Requested');
     }
 
-    // ── Bulk ──────────────────────────────────────────────────────────────────
-
     @IsTest
     static void testCreateEggRecord_bulk() {
         List<Egg__c> eggs = new List<Egg__c>();
@@ -186,5 +217,8 @@ private class eggControllerTest_copado {
         insert eggs;
         Test.stopTest();
         System.assertEquals(200, [SELECT COUNT() FROM Egg__c WHERE Egg_Type__c = 'Turkey']);
+        Date expected = Date.today().addDays(13);
+        System.assertEquals(200, [SELECT COUNT() FROM Egg__c
+                                  WHERE Egg_Type__c = 'Turkey' AND Expiration_Date__c = :expected]);
     }
 }

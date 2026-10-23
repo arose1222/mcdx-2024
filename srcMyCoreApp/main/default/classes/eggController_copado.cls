@@ -30,7 +30,10 @@ public with sharing class eggController_copado {
             if (String.isBlank(eggSize)) {
                 throw new AuraHandledException('Egg Size is required.');
             }
-            if (dateCollected != null && dateCollected > Date.today()) {
+            if (dateCollected == null) {
+                throw new AuraHandledException('Date Collected is required.');
+            }
+            if (dateCollected > Date.today()) {
                 throw new AuraHandledException('Date Collected cannot be in the future.');
             }
             if (String.isBlank(orderName)) {
@@ -43,6 +46,7 @@ public with sharing class eggController_copado {
                 throw new AuraHandledException('Dozens Requested must be greater than zero.');
             }
 
+            // Expiration_Date__c is set automatically by the Egg Set Expiration Date flow.
             Egg__c newEgg = new Egg__c(
                 Egg_Type__c         = eggType,
                 Egg_Size__c         = eggSize,
