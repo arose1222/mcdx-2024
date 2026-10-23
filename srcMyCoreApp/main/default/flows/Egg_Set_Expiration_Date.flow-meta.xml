@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Set_Expiration_Date</name>
+        <label>Set Expiration Date</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Expiration_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ExpirationDateFormula</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Before-save flow. Sets Expiration Date to 13 days after Date Collected on create, and whenever Date Collected changes.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>ExpirationDateFormula</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Date_Collected__c} + 13</expression>
+    </formulas>
+    <interviewLabel>Egg Set Expiration Date {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Egg Set Expiration Date</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Expiration_Date</targetReference>
+        </connector>
+        <filterFormula>AND(NOT(ISBLANK({!$Record.Date_Collected__c})), OR(ISNEW(), ISCHANGED({!$Record.Date_Collected__c})))</filterFormula>
+        <object>Egg__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
