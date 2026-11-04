@@ -5,7 +5,6 @@
         </template>
         <div class="slds-p-around_medium">
 
-            <!-- Order Name (required) -->
             <lightning-input
                 type="text"
                 name="orderName"
@@ -16,7 +15,6 @@
                 class="slds-m-bottom_small">
             </lightning-input>
 
-            <!-- Egg Type -->
             <lightning-combobox
                 label="Egg Type"
                 value={selectedEggType}
@@ -27,7 +25,6 @@
                 class="slds-m-bottom_small">
             </lightning-combobox>
 
-            <!-- Egg Size -->
             <div class="slds-m-top_small">
                 <lightning-combobox
                     label="Egg Size"
@@ -39,17 +36,26 @@
                 </lightning-combobox>
             </div>
 
-            <!-- Delivery Date -->
+            <lightning-input
+                type="date"
+                name="dateCollected"
+                label="Date Collected"
+                value={dateCollected}
+                required
+                field-level-help="Expiration Date is calculated automatically as 13 days after this date."
+                onchange={handleDateCollectedChange}
+                class="slds-m-top_small slds-m-bottom_small">
+            </lightning-input>
+
             <lightning-input
                 type="date"
                 name="deliveryDate"
                 label="Delivery Date"
                 value={deliveryDate}
                 onchange={handleDeliveryDateChange}
-                class="slds-m-top_small slds-m-bottom_small">
+                class="slds-m-bottom_small">
             </lightning-input>
 
-            <!-- Dozens Requested -->
             <lightning-input
                 type="number"
                 name="dozensRequested"
@@ -61,7 +67,6 @@
                 class="slds-m-bottom_medium">
             </lightning-input>
 
-            <!-- Inline error -->
             <template if:true={errorMessage}>
                 <div class="slds-notify slds-notify_alert slds-alert_error slds-m-bottom_small" role="alert">
                     <lightning-icon icon-name="utility:error" alternative-text="error" size="x-small" class="slds-m-right_x-small"></lightning-icon>
