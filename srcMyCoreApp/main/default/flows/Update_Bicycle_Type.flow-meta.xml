@@ -5,7 +5,7 @@
         <name>Check_Brake_Type_Selected_copado</name>
         <label>Check Brake Type Selected</label>
         <locationX>930</locationX>
-        <locationY>1595</locationY>
+        <locationY>1895</locationY>
         <defaultConnector>
             <targetReference>Check_Tire_Type_copado</targetReference>
         </defaultConnector>
@@ -45,7 +45,7 @@
         <name>Check_Expedited_Order_copado</name>
         <label>Check Expedited Order Selected</label>
         <locationX>930</locationX>
-        <locationY>1295</locationY>
+        <locationY>1595</locationY>
         <defaultConnector>
             <targetReference>Check_Brake_Type_Selected_copado</targetReference>
         </defaultConnector>
@@ -70,7 +70,7 @@
         <name>Check_Handlebar_Type_Is_Blank_copado</name>
         <label>Check Handlebar Type Is Blank</label>
         <locationX>930</locationX>
-        <locationY>3287</locationY>
+        <locationY>3587</locationY>
         <defaultConnector>
             <targetReference>Check_Seat_Type_Is_Blank_copado</targetReference>
         </defaultConnector>
@@ -120,7 +120,7 @@
         <name>Check_Lamination_Selected</name>
         <label>Check Lamination Selected</label>
         <locationX>930</locationX>
-        <locationY>995</locationY>
+        <locationY>1295</locationY>
         <defaultConnector>
             <targetReference>Check_Expedited_Order_copado</targetReference>
         </defaultConnector>
@@ -145,7 +145,7 @@
         <name>Check_Pedal_Type_Is_Blank</name>
         <label>Check Pedal Type Is Blank</label>
         <locationX>930</locationX>
-        <locationY>2795</locationY>
+        <locationY>3095</locationY>
         <defaultConnector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </defaultConnector>
@@ -170,7 +170,7 @@
         <name>Check_Pricing_Found</name>
         <label>Check Pricing Found</label>
         <locationX>930</locationX>
-        <locationY>695</locationY>
+        <locationY>995</locationY>
         <defaultConnector>
             <targetReference>Check_Lamination_Selected</targetReference>
         </defaultConnector>
@@ -195,7 +195,7 @@
         <name>Check_Road_Type_copado</name>
         <label>Check Road Type</label>
         <locationX>930</locationX>
-        <locationY>450</locationY>
+        <locationY>587</locationY>
         <defaultConnector>
             <targetReference>Get_Pricing</targetReference>
         </defaultConnector>
@@ -220,7 +220,7 @@
         <name>Check_Safety_Accessories_copado</name>
         <label>Check Safety Accessories Selected</label>
         <locationX>930</locationX>
-        <locationY>2195</locationY>
+        <locationY>2495</locationY>
         <defaultConnector>
             <targetReference>Check_Suspension_Configuration_copado</targetReference>
         </defaultConnector>
@@ -275,7 +275,10 @@
         <name>Check_Seat_Type_Is_Blank_copado</name>
         <label>Check Seat Type Is Blank</label>
         <locationX>930</locationX>
-        <locationY>3779</locationY>
+        <locationY>4079</locationY>
+        <defaultConnector>
+            <targetReference>END_ELEMENT_6</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Seat Type Already Set</defaultConnectorLabel>
         <rules>
             <name>Seat_Type_Is_Blank_copado</name>
@@ -297,7 +300,7 @@
         <name>Check_Suspension_Configuration_copado</name>
         <label>Check Suspension Configuration</label>
         <locationX>930</locationX>
-        <locationY>2495</locationY>
+        <locationY>2795</locationY>
         <defaultConnector>
             <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
         </defaultConnector>
@@ -322,7 +325,7 @@
         <name>Check_Tire_Type_copado</name>
         <label>Check Tire Type Selected</label>
         <locationX>930</locationX>
-        <locationY>1895</locationY>
+        <locationY>2195</locationY>
         <defaultConnector>
             <targetReference>Check_Safety_Accessories_copado</targetReference>
         </defaultConnector>
@@ -347,7 +350,7 @@
         <name>Determine_Handlebar_Type_copado</name>
         <label>Determine Handlebar Type</label>
         <locationX>578</locationX>
-        <locationY>3395</locationY>
+        <locationY>3695</locationY>
         <defaultConnector>
             <targetReference>Check_Seat_Type_Is_Blank_copado</targetReference>
         </defaultConnector>
@@ -417,7 +420,7 @@
         <name>Determine_Pedal_Type</name>
         <label>Determine Pedal Type</label>
         <locationX>644</locationX>
-        <locationY>2903</locationY>
+        <locationY>3203</locationY>
         <defaultConnector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </defaultConnector>
@@ -479,7 +482,10 @@
         <name>Determine_Seat_Type_copado</name>
         <label>Determine Seat Type by Bicycle Type</label>
         <locationX>578</locationX>
-        <locationY>3887</locationY>
+        <locationY>4187</locationY>
+        <defaultConnector>
+            <targetReference>END_ELEMENT_7</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Unknown Type - No Action</defaultConnectorLabel>
         <rules>
             <name>Seat_Type_Road_copado</name>
@@ -542,6 +548,31 @@
             <label>Tandem</label>
         </rules>
     </decisions>
+    <ends>
+        <name>END_ELEMENT_10</name>
+        <locationX>138</locationX>
+        <locationY>4403</locationY>
+    </ends>
+    <ends>
+        <name>END_ELEMENT_6</name>
+        <locationX>1282</locationX>
+        <locationY>4187</locationY>
+    </ends>
+    <ends>
+        <name>END_ELEMENT_7</name>
+        <locationX>1018</locationX>
+        <locationY>4295</locationY>
+    </ends>
+    <ends>
+        <name>END_ELEMENT_8</name>
+        <locationX>578</locationX>
+        <locationY>4703</locationY>
+    </ends>
+    <ends>
+        <name>END_ELEMENT_9</name>
+        <locationX>402</locationX>
+        <locationY>4403</locationY>
+    </ends>
     <environments>Default</environments>
     <formulas>
         <name>fxConvertPriceToNumber</name>
@@ -628,7 +659,7 @@
         <name>Get_Pricing</name>
         <label>Get Pricing</label>
         <locationX>930</locationX>
-        <locationY>587</locationY>
+        <locationY>887</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_Pricing_Found</targetReference>
@@ -649,7 +680,7 @@
         <name>Add_Bell_Charge_copado</name>
         <label>Add Bell Charge</label>
         <locationX>798</locationX>
-        <locationY>2303</locationY>
+        <locationY>2603</locationY>
         <connector>
             <targetReference>Check_Suspension_Configuration_copado</targetReference>
         </connector>
@@ -665,7 +696,7 @@
         <name>Add_Expedited_Charge_copado</name>
         <label>Add Expedited Charge</label>
         <locationX>798</locationX>
-        <locationY>1403</locationY>
+        <locationY>1703</locationY>
         <connector>
             <targetReference>Check_Brake_Type_Selected_copado</targetReference>
         </connector>
@@ -681,7 +712,7 @@
         <name>Add_Full_Suspension_Charge_copado</name>
         <label>Add Full Suspension Charge</label>
         <locationX>798</locationX>
-        <locationY>2603</locationY>
+        <locationY>2903</locationY>
         <connector>
             <targetReference>Check_Pedal_Type_Is_Blank</targetReference>
         </connector>
@@ -697,7 +728,7 @@
         <name>Add_Hydraulic_Disc_Brake_Charge_copado</name>
         <label>Add Hydraulic Disc Brake Charge</label>
         <locationX>930</locationX>
-        <locationY>1703</locationY>
+        <locationY>2003</locationY>
         <connector>
             <targetReference>Check_Tire_Type_copado</targetReference>
         </connector>
@@ -713,7 +744,7 @@
         <name>Add_Lamination_Price</name>
         <label>Add Lamination Price</label>
         <locationX>798</locationX>
-        <locationY>1103</locationY>
+        <locationY>1403</locationY>
         <connector>
             <targetReference>Check_Expedited_Order_copado</targetReference>
         </connector>
@@ -729,7 +760,7 @@
         <name>Add_Light_Options_Charge_copado</name>
         <label>Add Light Options Charge</label>
         <locationX>534</locationX>
-        <locationY>2303</locationY>
+        <locationY>2603</locationY>
         <connector>
             <targetReference>Check_Suspension_Configuration_copado</targetReference>
         </connector>
@@ -745,7 +776,7 @@
         <name>Add_Mechanical_Disc_Brake_Charge_copado</name>
         <label>Add Mechanical Disc Brake Charge</label>
         <locationX>666</locationX>
-        <locationY>1703</locationY>
+        <locationY>2003</locationY>
         <connector>
             <targetReference>Check_Tire_Type_copado</targetReference>
         </connector>
@@ -761,7 +792,7 @@
         <name>Add_Mirrors_Charge_copado</name>
         <label>Add Mirrors Charge</label>
         <locationX>1062</locationX>
-        <locationY>2303</locationY>
+        <locationY>2603</locationY>
         <connector>
             <targetReference>Check_Suspension_Configuration_copado</targetReference>
         </connector>
@@ -777,7 +808,7 @@
         <name>Add_Tubed_Tire_Charge_copado</name>
         <label>Add Tubed Tire Charge</label>
         <locationX>798</locationX>
-        <locationY>2003</locationY>
+        <locationY>2303</locationY>
         <connector>
             <targetReference>Check_Safety_Accessories_copado</targetReference>
         </connector>
@@ -800,7 +831,7 @@
         <inputAssignments>
             <field>Type__c</field>
             <value>
-                <stringValue>BMX</stringValue>
+                <stringValue>Tandem</stringValue>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -809,7 +840,7 @@
         <name>Set_Handlebar_Type_Bullhorn_copado</name>
         <label>Set Handlebar Type - Bullhorn</label>
         <locationX>50</locationX>
-        <locationY>3503</locationY>
+        <locationY>3803</locationY>
         <connector>
             <targetReference>Check_Seat_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -825,7 +856,7 @@
         <name>Set_Handlebar_Type_Drop_copado</name>
         <label>Set Handlebar Type - Drop</label>
         <locationX>578</locationX>
-        <locationY>3503</locationY>
+        <locationY>3803</locationY>
         <connector>
             <targetReference>Check_Seat_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -841,7 +872,7 @@
         <name>Set_Handlebar_Type_Flat_copado</name>
         <label>Set Handlebar Type - Flat</label>
         <locationX>314</locationX>
-        <locationY>3503</locationY>
+        <locationY>3803</locationY>
         <connector>
             <targetReference>Check_Seat_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -857,7 +888,7 @@
         <name>Set_Handlebar_Type_Riser_copado</name>
         <label>Set Handlebar Type - Riser</label>
         <locationX>842</locationX>
-        <locationY>3503</locationY>
+        <locationY>3803</locationY>
         <connector>
             <targetReference>Check_Seat_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -872,8 +903,8 @@
     <recordUpdates>
         <name>Set_Manufacturer_Schwinn_copado</name>
         <label>Set Manufacturer - Schwinn</label>
-        <locationX>666</locationX>
-        <locationY>550</locationY>
+        <locationX>798</locationX>
+        <locationY>695</locationY>
         <connector>
             <targetReference>Get_Pricing</targetReference>
         </connector>
@@ -889,7 +920,7 @@
         <name>Set_Pedal_Type_Integrated</name>
         <label>Set Pedal Type - Integrated</label>
         <locationX>248</locationX>
-        <locationY>3011</locationY>
+        <locationY>3311</locationY>
         <connector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -905,7 +936,7 @@
         <name>Set_Pedal_Type_Molded</name>
         <label>Set Pedal Type - Molded</label>
         <locationX>776</locationX>
-        <locationY>3011</locationY>
+        <locationY>3311</locationY>
         <connector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -921,7 +952,7 @@
         <name>Set_Pedal_Type_Standard</name>
         <label>Set Pedal Type - Standard</label>
         <locationX>512</locationX>
-        <locationY>3011</locationY>
+        <locationY>3311</locationY>
         <connector>
             <targetReference>Check_Handlebar_Type_Is_Blank_copado</targetReference>
         </connector>
@@ -937,7 +968,10 @@
         <name>Set_Seat_Type_Cruiser_copado</name>
         <label>Set Seat Type - Cruiser</label>
         <locationX>578</locationX>
-        <locationY>4295</locationY>
+        <locationY>4595</locationY>
+        <connector>
+            <targetReference>END_ELEMENT_8</targetReference>
+        </connector>
         <inputAssignments>
             <field>Seat_Type__c</field>
             <value>
@@ -950,7 +984,10 @@
         <name>Set_Seat_Type_Mountain_copado</name>
         <label>Set Seat Type - Mountain</label>
         <locationX>402</locationX>
-        <locationY>3995</locationY>
+        <locationY>4295</locationY>
+        <connector>
+            <targetReference>END_ELEMENT_9</targetReference>
+        </connector>
         <inputAssignments>
             <field>Seat_Type__c</field>
             <value>
@@ -963,7 +1000,10 @@
         <name>Set_Seat_Type_Road_copado</name>
         <label>Set Seat Type - Road</label>
         <locationX>138</locationX>
-        <locationY>3995</locationY>
+        <locationY>4295</locationY>
+        <connector>
+            <targetReference>END_ELEMENT_10</targetReference>
+        </connector>
         <inputAssignments>
             <field>Seat_Type__c</field>
             <value>
@@ -976,7 +1016,7 @@
         <name>Update_Base_Price</name>
         <label>Update Base Price</label>
         <locationX>798</locationX>
-        <locationY>803</locationY>
+        <locationY>1103</locationY>
         <connector>
             <targetReference>Check_Lamination_Selected</targetReference>
         </connector>
@@ -998,5 +1038,5 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
 </Flow>
