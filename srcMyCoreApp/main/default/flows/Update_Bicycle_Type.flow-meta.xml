@@ -831,7 +831,7 @@
         <inputAssignments>
             <field>Type__c</field>
             <value>
-                <stringValue>Tandem</stringValue>
+                <stringValue>Road</stringValue>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -1038,5 +1038,5 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
 </Flow>

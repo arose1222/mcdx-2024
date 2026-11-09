@@ -64,6 +64,10 @@
                 <behavior>Edit</behavior>
                 <field>Custom_Shocks__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Competition_Series__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
