@@ -1,0 +1,13 @@
+.required-field {
+    border-inline-start: var(--slds-g-sizing-border-2, 0.125rem) solid var(--slds-g-color-error-base-40);
+    background-color: var(--slds-g-color-surface-container-1);
+    border-radius: var(--slds-g-radius-border-2);
+    padding: var(--slds-g-spacing-2);
+    margin-bottom: var(--slds-g-spacing-2);
+}
+
+.required-badge {
+    background-color: var(--slds-g-color-error-base-40);
+    color: var(--slds-g-color-neutral-base-100);
+    margin-bottom: var(--slds-g-spacing-1);
+}

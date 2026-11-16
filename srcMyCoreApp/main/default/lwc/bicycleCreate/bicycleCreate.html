@@ -1,0 +1,115 @@
+<template>
+    <lightning-card title="New Bicycle" icon-name="custom:custom67">
+        <div class="slds-is-relative">
+            <template lwc:if={isLoading}>
+                <lightning-spinner alternative-text="Loading bicycle form" size="medium"></lightning-spinner>
+            </template>
+
+            <lightning-record-edit-form
+                object-api-name={bicycleObject}
+                record-type-id={recordTypeId}
+                onload={handleLoad}
+                onsubmit={handleSubmit}
+                onsuccess={handleSuccess}
+                onerror={handleError}>
+                <lightning-messages></lightning-messages>
+
+                <div class="slds-p-around_medium">
+                    <p class="slds-m-bottom_medium" id="required-legend">
+                        Fields marked Required must be completed. Bicycle Name is always required.
+                        Color is required before the record can be saved.
+                    </p>
+
+                    <h2 class="slds-text-heading_small slds-m-bottom_small">Bicycle</h2>
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <div class="required-field">
+                                <span class="slds-badge required-badge">Required</span>
+                                <lightning-input-field field-name={nameField} required></lightning-input-field>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <div class="required-field">
+                                <span class="slds-badge required-badge">Required</span>
+                                <lightning-input-field field-name={colorField} required></lightning-input-field>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={typeField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={manufacturerField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={locationField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={ownerIdField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={basePriceField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={manufacturedCountryField}></lightning-input-field>
+                        </div>
+                    </div>
+
+                    <h2 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Components</h2>
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={pedalTypeField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={pedalManufacturerField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={pedalTypeManufacturerField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={brakeTypeField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={tireTypeField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={suspensionField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={handlebarField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={seatTypeField}></lightning-input-field>
+                        </div>
+                    </div>
+
+                    <h2 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Options</h2>
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={expeditedOrderField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={laminationField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name={personalDecalsField}></lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1">
+                            <lightning-input-field field-name={decalDescriptionField}></lightning-input-field>
+                        </div>
+                    </div>
+
+                    <div class="slds-m-top_medium">
+                        <lightning-button
+                            variant="neutral"
+                            label="Clear"
+                            type="button"
+                            onclick={handleReset}
+                            class="slds-m-right_x-small">
+                        </lightning-button>
+                        <lightning-button variant="brand" type="submit" label="Create Bicycle"></lightning-button>
+                    </div>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+    </lightning-card>
+</template>
