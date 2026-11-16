@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Front_Light_Options__c</fullName>
+    <description>Optional front light add-on. Any selected value adds $50 to Base Price. A blank value adds nothing.</description>
+    <inlineHelpText>Optional. Choose Spot Beam, Flood Beam, or Cut Off Beam to add $50 to Base Price. Leave blank for no front-light charge.</inlineHelpText>
+    <label>Front Light Options</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Spot Beam</fullName>
+                <default>false</default>
+                <label>Spot Beam</label>
+            </value>
+            <value>
+                <fullName>Flood Beam</fullName>
+                <default>false</default>
+                <label>Flood Beam</label>
+            </value>
+            <value>
+                <fullName>Cut Off Beam</fullName>
+                <default>false</default>
+                <label>Cut Off Beam</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
