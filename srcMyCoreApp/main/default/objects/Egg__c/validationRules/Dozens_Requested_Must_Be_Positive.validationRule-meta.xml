@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dozens_Requested_Must_Be_Positive</fullName>
+    <active>true</active>
+    <description>Ensures Dozens Requested is greater than zero when populated.</description>
+    <errorConditionFormula>AND(NOT(ISNULL(Dozens_Requested__c)), Dozens_Requested__c &lt;= 0)</errorConditionFormula>
+    <errorDisplayField>Dozens_Requested__c</errorDisplayField>
+    <errorMessage>Dozens Requested must be greater than zero.</errorMessage>
+</ValidationRule>
