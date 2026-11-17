@@ -5,5 +5,6 @@
     <fields>Egg_Type__c</fields>
     <fields>Egg_Size__c</fields>
     <fields>Date_Collected__c</fields>
+    <fields>Expiration_Date__c</fields>
     <label>Egg Compact Layout</label>
 </CompactLayout>
