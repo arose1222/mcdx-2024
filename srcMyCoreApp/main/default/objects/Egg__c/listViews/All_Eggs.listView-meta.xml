@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Eggs</fullName>
+    <columns>NAME</columns>
+    <columns>Egg_Type__c</columns>
+    <columns>Egg_Size__c</columns>
+    <columns>Date_Collected__c</columns>
+    <columns>Active__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Eggs</label>
+</ListView>
