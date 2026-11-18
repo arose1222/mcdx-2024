@@ -1,5 +1,6 @@
 @IsTest
 private class AccountAutomationsTest {
+
     private static List<Account> buildAccounts(Integer count) {
         List<Account> accounts = new List<Account>();
         for (Integer i = 0; i < count; i++) {
@@ -9,239 +10,296 @@ private class AccountAutomationsTest {
     }
 
     private static void assertNoQueriesOrDml() {
-        System.assertEquals(0, Limits.getQueries(), 'Defaulting should not query');
-        System.assertEquals(0, Limits.getDmlStatements(), 'Defaulting should not perform DML');
+        Assert.areEqual(0, Limits.getQueries(), 'Defaulting should not query');
+        Assert.areEqual(0, Limits.getDmlStatements(), 'Defaulting should not perform DML');
     }
 
-    @isTest static void testDefaultDescriptionWhenBlank() {
+    // ---------- Description ----------
+
+    @IsTest
+    static void testDefaultDescriptionWhenBlank() {
         Account acc = new Account(Name = 'My Test Account');
 
-        acc = AccountAutomations.setDefaultDescription(acc);
+        AccountAutomations.setDefaultDescription(new List<Account>{ acc });
 
-        System.assertEquals('Default description', acc.Description);
+        Assert.areEqual(AccountAutomations.DEFAULT_DESCRIPTION, acc.Description);
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testDefaultDescriptionWhenWhitespace() {
+    @IsTest
+    static void testDefaultDescriptionWhenWhitespace() {
         Account acc = new Account(Name = 'My Test Account', Description = '   ');
 
-        acc = AccountAutomations.setDefaultDescription(acc);
+        AccountAutomations.setDefaultDescription(new List<Account>{ acc });
 
-        System.assertEquals('Default description', acc.Description);
+        Assert.areEqual(AccountAutomations.DEFAULT_DESCRIPTION, acc.Description);
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testDefaultDescriptionPreservesExisting() {
+    @IsTest
+    static void testDefaultDescriptionPreservesExisting() {
         Account acc = new Account(Name = 'My Test Account', Description = 'New Description Manual');
 
-        acc = AccountAutomations.setDefaultDescription(acc);
+        AccountAutomations.setDefaultDescription(new List<Account>{ acc });
 
-        System.assertEquals('New Description Manual', acc.Description);
+        Assert.areEqual('New Description Manual', acc.Description);
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testDefaultSite() {
+    // ---------- Site ----------
+
+    @IsTest
+    static void testDefaultSite() {
         Account acc = new Account(Name = 'My Test Account');
 
-        acc = AccountAutomations.setDefaultSite(acc);
+        AccountAutomations.setDefaultSite(new List<Account>{ acc });
 
-        System.assertEquals('Single location', acc.Site);
+        Assert.areEqual(AccountAutomations.DEFAULT_SITE, acc.Site);
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testDefaultSitePreservesExisting() {
+    @IsTest
+    static void testDefaultSitePreservesExisting() {
         Account acc = new Account(Name = 'My Test Account', Site = 'Headquarters');
 
-        acc = AccountAutomations.setDefaultSite(acc);
+        AccountAutomations.setDefaultSite(new List<Account>{ acc });
 
-        System.assertEquals('Headquarters', acc.Site);
+        Assert.areEqual('Headquarters', acc.Site);
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testDefaultShippingAddress() {
+    // ---------- Shipping address ----------
+
+    @IsTest
+    static void testDefaultShippingAddress() {
         Account acc = new Account(Name = 'My Test Account');
 
-        acc = AccountAutomations.setDefaultShippingAddress(acc);
+        AccountAutomations.setDefaultShippingAddress(new List<Account>{ acc });
 
-        System.assertEquals('10330 N Meridian Rd', acc.ShippingStreet);
-        System.assertEquals('Fortville', acc.ShippingCity);
-        System.assertEquals('Indiana', acc.ShippingState);
-        System.assertEquals('46040', acc.ShippingPostalCode);
+        Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_STREET, acc.ShippingStreet);
+        Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_CITY, acc.ShippingCity);
+        Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_STATE, acc.ShippingState);
+        Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_POSTAL_CODE, acc.ShippingPostalCode);
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testShippingAddressFillsOnlyBlankParts() {
+    @IsTest
+    static void testShippingAddressFillsOnlyBlankParts() {
         Account acc = new Account(
             Name = 'My Test Account',
             ShippingStreet = '1 Main St',
             ShippingState = 'Ohio'
         );
 
-        acc = AccountAutomations.setDefaultShippingAddress(acc);
+        AccountAutomations.setDefaultShippingAddress(new List<Account>{ acc });
 
-        System.assertEquals('1 Main St', acc.ShippingStreet);
-        System.assertEquals('Fortville', acc.ShippingCity);
-        System.assertEquals('Ohio', acc.ShippingState);
-        System.assertEquals('46040', acc.ShippingPostalCode);
+        Assert.areEqual('1 Main St', acc.ShippingStreet);
+        Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_CITY, acc.ShippingCity);
+        Assert.areEqual('Ohio', acc.ShippingState);
+        Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_POSTAL_CODE, acc.ShippingPostalCode);
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testDefaultPhone() {
+    // ---------- Phone ----------
+
+    @IsTest
+    static void testDefaultPhone() {
         Account acc = new Account(Name = 'My Test Account');
 
-        acc = AccountAutomations.setDefaultPhone(acc);
+        AccountAutomations.setDefaultPhone(new List<Account>{ acc });
 
-        System.assertEquals('3174162277', acc.Phone);
+        Assert.areEqual(AccountAutomations.DEFAULT_PHONE, acc.Phone);
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testDefaultPhonePreservesExisting() {
+    @IsTest
+    static void testDefaultPhonePreservesExisting() {
         Account acc = new Account(Name = 'My Test Account', Phone = '3175550100');
 
-        acc = AccountAutomations.setDefaultPhone(acc);
+        AccountAutomations.setDefaultPhone(new List<Account>{ acc });
 
-        System.assertEquals('3175550100', acc.Phone);
+        Assert.areEqual('3175550100', acc.Phone);
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testDefaultURL() {
+    // ---------- Website ----------
+
+    @IsTest
+    static void testDefaultURL() {
         Account acc = new Account(Name = 'My Test Account');
 
-        acc = AccountAutomations.setDefaultURL(acc);
+        AccountAutomations.setDefaultURL(new List<Account>{ acc });
 
-        System.assertEquals('www.copado.com', acc.Website);
+        Assert.areEqual(AccountAutomations.DEFAULT_WEBSITE, acc.Website);
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testDefaultURLPreservesExisting() {
+    @IsTest
+    static void testDefaultURLPreservesExisting() {
         Account acc = new Account(Name = 'My Test Account', Website = 'www.example.com');
 
-        acc = AccountAutomations.setDefaultURL(acc);
+        AccountAutomations.setDefaultURL(new List<Account>{ acc });
 
-        System.assertEquals('www.example.com', acc.Website);
+        Assert.areEqual('www.example.com', acc.Website);
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testNullListReturnsEmptyList() {
-        System.assertEquals(0, AccountAutomations.setDefaultDescription((List<Account>) null).size());
-        System.assertEquals(0, AccountAutomations.setDefaultSite((List<Account>) null).size());
-        System.assertEquals(0, AccountAutomations.setDefaultShippingAddress((List<Account>) null).size());
-        System.assertEquals(0, AccountAutomations.setDefaultPhone((List<Account>) null).size());
-        System.assertEquals(0, AccountAutomations.setDefaultURL((List<Account>) null).size());
-        System.assertEquals(0, AccountAutomations.setDefaults((List<Account>) null).size());
+    // ---------- Null and edge handling ----------
+
+    @IsTest
+    static void testNullListReturnsEmptyList() {
+        Assert.areEqual(0, AccountAutomations.setDefaultDescription(null).size());
+        Assert.areEqual(0, AccountAutomations.setDefaultSite(null).size());
+        Assert.areEqual(0, AccountAutomations.setDefaultShippingAddress(null).size());
+        Assert.areEqual(0, AccountAutomations.setDefaultPhone(null).size());
+        Assert.areEqual(0, AccountAutomations.setDefaultURL(null).size());
+        Assert.areEqual(0, AccountAutomations.setDefaults(null).size());
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testNullAccountIsSkipped() {
+    @IsTest
+    static void testEmptyListReturnsEmptyList() {
+        Assert.areEqual(0, AccountAutomations.setDefaults(new List<Account>()).size());
+        assertNoQueriesOrDml();
+    }
+
+    @IsTest
+    static void testNullAccountIsSkippedByEveryMethod() {
         List<Account> accounts = new List<Account>{ null, new Account(Name = 'Kept') };
 
+        AccountAutomations.setDefaultDescription(accounts);
+        AccountAutomations.setDefaultSite(accounts);
+        AccountAutomations.setDefaultShippingAddress(accounts);
+        AccountAutomations.setDefaultPhone(accounts);
+        AccountAutomations.setDefaultURL(accounts);
         AccountAutomations.setDefaults(accounts);
 
-        System.assertEquals(2, accounts.size());
-        System.assertEquals(null, accounts[0]);
-        System.assertEquals('Default description', accounts[1].Description);
-        System.assertEquals('Single location', accounts[1].Site);
-        System.assertEquals('3174162277', accounts[1].Phone);
-        System.assertEquals('www.copado.com', accounts[1].Website);
+        Assert.areEqual(2, accounts.size());
+        Assert.isNull(accounts[0]);
+        Assert.areEqual(AccountAutomations.DEFAULT_DESCRIPTION, accounts[1].Description);
+        Assert.areEqual(AccountAutomations.DEFAULT_SITE, accounts[1].Site);
+        Assert.areEqual(AccountAutomations.DEFAULT_PHONE, accounts[1].Phone);
+        Assert.areEqual(AccountAutomations.DEFAULT_WEBSITE, accounts[1].Website);
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testSetDefaultsMatchesIndividualSetters() {
+    @IsTest
+    static void testReturnsSameListInstanceContents() {
+        List<Account> accounts = buildAccounts(3);
+
+        List<Account> result = AccountAutomations.setDefaults(accounts);
+
+        Assert.areEqual(3, result.size());
+        Assert.areEqual(AccountAutomations.DEFAULT_DESCRIPTION, result[2].Description);
+        assertNoQueriesOrDml();
+    }
+
+    @IsTest
+    static void testSetDefaultsMatchesIndividualSetters() {
         Account viaDefaults = new Account(Name = 'Parity A', Phone = '3175550100', Description = '   ');
         Account viaSetters = new Account(Name = 'Parity B', Phone = '3175550100', Description = '   ');
+        List<Account> setterList = new List<Account>{ viaSetters };
 
         AccountAutomations.setDefaults(new List<Account>{ viaDefaults });
-        AccountAutomations.setDefaultDescription(viaSetters);
-        AccountAutomations.setDefaultSite(viaSetters);
-        AccountAutomations.setDefaultShippingAddress(viaSetters);
-        AccountAutomations.setDefaultPhone(viaSetters);
-        AccountAutomations.setDefaultURL(viaSetters);
+        AccountAutomations.setDefaultDescription(setterList);
+        AccountAutomations.setDefaultSite(setterList);
+        AccountAutomations.setDefaultShippingAddress(setterList);
+        AccountAutomations.setDefaultPhone(setterList);
+        AccountAutomations.setDefaultURL(setterList);
 
-        System.assertEquals(viaSetters.Description, viaDefaults.Description);
-        System.assertEquals(viaSetters.Site, viaDefaults.Site);
-        System.assertEquals(viaSetters.ShippingStreet, viaDefaults.ShippingStreet);
-        System.assertEquals(viaSetters.ShippingCity, viaDefaults.ShippingCity);
-        System.assertEquals(viaSetters.ShippingState, viaDefaults.ShippingState);
-        System.assertEquals(viaSetters.ShippingPostalCode, viaDefaults.ShippingPostalCode);
-        System.assertEquals(viaSetters.Phone, viaDefaults.Phone);
-        System.assertEquals(viaSetters.Website, viaDefaults.Website);
-        System.assertEquals('3175550100', viaDefaults.Phone);
-        System.assertEquals('Default description', viaDefaults.Description);
+        Assert.areEqual(viaSetters.Description, viaDefaults.Description);
+        Assert.areEqual(viaSetters.Site, viaDefaults.Site);
+        Assert.areEqual(viaSetters.ShippingStreet, viaDefaults.ShippingStreet);
+        Assert.areEqual(viaSetters.ShippingCity, viaDefaults.ShippingCity);
+        Assert.areEqual(viaSetters.ShippingState, viaDefaults.ShippingState);
+        Assert.areEqual(viaSetters.ShippingPostalCode, viaDefaults.ShippingPostalCode);
+        Assert.areEqual(viaSetters.Phone, viaDefaults.Phone);
+        Assert.areEqual(viaSetters.Website, viaDefaults.Website);
+        Assert.areEqual('3175550100', viaDefaults.Phone);
+        Assert.areEqual(AccountAutomations.DEFAULT_DESCRIPTION, viaDefaults.Description);
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testBulkDefaultDescription() {
+    // ---------- Bulk ----------
+
+    @IsTest
+    static void testBulkDefaultDescription() {
         List<Account> accounts = buildAccounts(200);
         accounts[0].Description = 'Pre-set description';
         accounts[1].Description = '  ';
 
         AccountAutomations.setDefaultDescription(accounts);
 
-        System.assertEquals('Pre-set description', accounts[0].Description);
-        System.assertEquals('Default description', accounts[1].Description);
+        Assert.areEqual('Pre-set description', accounts[0].Description);
+        Assert.areEqual(AccountAutomations.DEFAULT_DESCRIPTION, accounts[1].Description);
         for (Integer i = 2; i < accounts.size(); i++) {
-            System.assertEquals('Default description', accounts[i].Description, 'Blank description should default for record ' + i);
+            Assert.areEqual(AccountAutomations.DEFAULT_DESCRIPTION, accounts[i].Description, 'Blank description should default for record ' + i);
         }
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testBulkDefaultSite() {
+    @IsTest
+    static void testBulkDefaultSite() {
         List<Account> accounts = buildAccounts(200);
         accounts[0].Site = 'Headquarters';
 
         AccountAutomations.setDefaultSite(accounts);
 
-        System.assertEquals('Headquarters', accounts[0].Site);
+        Assert.areEqual('Headquarters', accounts[0].Site);
         for (Integer i = 1; i < accounts.size(); i++) {
-            System.assertEquals('Single location', accounts[i].Site);
+            Assert.areEqual(AccountAutomations.DEFAULT_SITE, accounts[i].Site);
         }
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testBulkDefaultShippingAddress() {
+    @IsTest
+    static void testBulkDefaultShippingAddress() {
         List<Account> accounts = buildAccounts(200);
         accounts[0].ShippingStreet = '1 Main St';
 
         AccountAutomations.setDefaultShippingAddress(accounts);
 
-        System.assertEquals('1 Main St', accounts[0].ShippingStreet);
-        System.assertEquals('Fortville', accounts[0].ShippingCity);
+        Assert.areEqual('1 Main St', accounts[0].ShippingStreet);
+        Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_CITY, accounts[0].ShippingCity);
         for (Integer i = 1; i < accounts.size(); i++) {
-            System.assertEquals('10330 N Meridian Rd', accounts[i].ShippingStreet);
-            System.assertEquals('Fortville', accounts[i].ShippingCity);
-            System.assertEquals('Indiana', accounts[i].ShippingState);
-            System.assertEquals('46040', accounts[i].ShippingPostalCode);
+            Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_STREET, accounts[i].ShippingStreet);
+            Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_CITY, accounts[i].ShippingCity);
+            Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_STATE, accounts[i].ShippingState);
+            Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_POSTAL_CODE, accounts[i].ShippingPostalCode);
         }
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testBulkDefaultPhone() {
+    @IsTest
+    static void testBulkDefaultPhone() {
         List<Account> accounts = buildAccounts(200);
         accounts[0].Phone = '3175550100';
 
         AccountAutomations.setDefaultPhone(accounts);
 
-        System.assertEquals('3175550100', accounts[0].Phone);
+        Assert.areEqual('3175550100', accounts[0].Phone);
         for (Integer i = 1; i < accounts.size(); i++) {
-            System.assertEquals('3174162277', accounts[i].Phone);
+            Assert.areEqual(AccountAutomations.DEFAULT_PHONE, accounts[i].Phone);
         }
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testBulkDefaultURL() {
+    @IsTest
+    static void testBulkDefaultURL() {
         List<Account> accounts = buildAccounts(200);
         accounts[0].Website = 'www.example.com';
 
         AccountAutomations.setDefaultURL(accounts);
 
-        System.assertEquals('www.example.com', accounts[0].Website);
+        Assert.areEqual('www.example.com', accounts[0].Website);
         for (Integer i = 1; i < accounts.size(); i++) {
-            System.assertEquals('www.copado.com', accounts[i].Website);
+            Assert.areEqual(AccountAutomations.DEFAULT_WEBSITE, accounts[i].Website);
         }
         assertNoQueriesOrDml();
     }
 
-    @isTest static void testBulkSetDefaultsConsolidated() {
+    @IsTest
+    static void testBulkSetDefaultsConsolidated() {
         List<Account> accounts = buildAccounts(200);
         accounts[0].Description = 'Manually entered description';
         accounts[0].Site = 'Headquarters';
@@ -263,7 +321,7 @@ private class AccountAutomationsTest {
             WHERE Id IN :accounts
         ];
 
-        System.assertEquals(200, inserted.size(), 'All 200 bulk accounts should insert successfully');
+        Assert.areEqual(200, inserted.size(), 'All 200 bulk accounts should insert successfully');
 
         Account preserved;
         Account defaulted;
@@ -275,22 +333,22 @@ private class AccountAutomationsTest {
             }
         }
 
-        System.assertEquals('Manually entered description', preserved.Description);
-        System.assertEquals('Headquarters', preserved.Site);
-        System.assertEquals('1 Main St', preserved.ShippingStreet);
-        System.assertEquals('Columbus', preserved.ShippingCity);
-        System.assertEquals('Ohio', preserved.ShippingState);
-        System.assertEquals('43004', preserved.ShippingPostalCode);
-        System.assertEquals('3175550100', preserved.Phone);
-        System.assertEquals('www.example.com', preserved.Website);
+        Assert.areEqual('Manually entered description', preserved.Description);
+        Assert.areEqual('Headquarters', preserved.Site);
+        Assert.areEqual('1 Main St', preserved.ShippingStreet);
+        Assert.areEqual('Columbus', preserved.ShippingCity);
+        Assert.areEqual('Ohio', preserved.ShippingState);
+        Assert.areEqual('43004', preserved.ShippingPostalCode);
+        Assert.areEqual('3175550100', preserved.Phone);
+        Assert.areEqual('www.example.com', preserved.Website);
 
-        System.assertEquals('Default description', defaulted.Description);
-        System.assertEquals('Single location', defaulted.Site);
-        System.assertEquals('10330 N Meridian Rd', defaulted.ShippingStreet);
-        System.assertEquals('Fortville', defaulted.ShippingCity);
-        System.assertEquals('Indiana', defaulted.ShippingState);
-        System.assertEquals('46040', defaulted.ShippingPostalCode);
-        System.assertEquals('3174162277', defaulted.Phone);
-        System.assertEquals('www.copado.com', defaulted.Website);
+        Assert.areEqual(AccountAutomations.DEFAULT_DESCRIPTION, defaulted.Description);
+        Assert.areEqual(AccountAutomations.DEFAULT_SITE, defaulted.Site);
+        Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_STREET, defaulted.ShippingStreet);
+        Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_CITY, defaulted.ShippingCity);
+        Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_STATE, defaulted.ShippingState);
+        Assert.areEqual(AccountAutomations.DEFAULT_SHIPPING_POSTAL_CODE, defaulted.ShippingPostalCode);
+        Assert.areEqual(AccountAutomations.DEFAULT_PHONE, defaulted.Phone);
+        Assert.areEqual(AccountAutomations.DEFAULT_WEBSITE, defaulted.Website);
     }
 }
